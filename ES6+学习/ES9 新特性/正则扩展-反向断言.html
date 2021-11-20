@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正则扩展-反向断言</title>
+    <script>
+        // 断言：判断。   判断这次的匹配结果是正确还是不正确
+
+        // 声明字符串
+        let str = 'JS123456789你好呀666哈哈哈';
+        // 正向断言
+        const reg1 = /\d+(?=哈)/;    // 查找 哈 前面的
+        const result1 = reg1.exec(str)
+        console.log(result1);  // 找到是 666
+
+        // 反向断言
+        const reg2 = /(?<=呀)\d+/;   // 查找 呀 后面的
+        const result2 = reg2.exec(str)
+        console.log(result2);  // 找到是 666
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

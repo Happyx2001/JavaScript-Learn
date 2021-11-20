@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>offset系列属性</title>
+    <script>
+        // offset 就是偏移量，可以“动态的”得到给元素的位置(偏移)、大小等
+        // (1): 获得元素距离 “带有定位的父元素” 的位置
+        // (2): 获得元素自身的大小(宽度高度)
+        // (3): 返回的数组都不带单位
+
+        // offset系列经常用于获取元素的位置: offsetTop, offsetLeft
+
+        // element.offsetParent  返回作为该元素 “带有定位的父元素” ，如果父级都没定位则返回 body
+        // (element.parentNode 返回的是最近一级的父亲，即 亲爸爸)
+        // element.offsetTop  返回元素相对 “带有定位的父元素” 上方的偏移
+        // element.offsetLeft  返回元素相对 “带有定位的父元素” 左边框的偏移
+        // element.offsetWidth  返回自身包括padding、边框border、内容区的宽度，返回的数值不带单位
+        // element.offsetHeight  返回自身包括padding、边框border、内容区的高度，返回的数值不带单位
+
+        // .offset与 .style 的区别
+        // offset: 可以得到任意样式表中的样式值        style: 只能得到行内样式表中的样式值
+        // offset: 获得的数值是没有单位的              style:  获得的数值是由单位的 字符串 
+        // offsetWidth: 包含 padding+border+content  style.width: 获得的是 content 
+        // offsetWidth等属性是只读属性，只能获取不能赋值  style.width等属性是可读属性，可以获取也可以赋值
+        // 因此：想要获取元素大小位置用 offset 更合适，给元素更改数值则需要用 style 
+
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .father {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 50px;
+            background-color: aqua;
+        }
+
+        .son {
+            width: 200px;
+            height: 200px;
+            margin: 50px 0 0 100px;
+            background-color: blue;
+        }
+
+        .box {
+            width: 400px;
+            height: 400px;
+            margin: 50px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <div class="box">
+        <p>鼠标在盒子内的位置是：</p>
+    </div>
+    <script>
+        var father = document.querySelector('.father');
+        var son = document.querySelector('.son');
+        // offset 系列
+        // 偏移量， 不带单位
+        console.log(father.offsetParent);
+        console.log(father.offsetTop);
+        console.log(father.offsetLeft);
+        // son 的 offset: 它的上一个有定位的父元素是 father
+        console.log(son.offsetParent);
+        // 偏移量 Top、Left
+        console.log(son.offsetTop);
+        console.log(son.offsetLeft);
+        console.log('');
+        // Width、Height高宽
+        console.log(father.offsetWidth);
+        console.log(father.offsetHeight);
+        console.log(son.offsetWidth);
+        console.log(son.offsetHeight);
+
+        // 案例：获取鼠标在盒子内的坐标
+        var box = document.querySelector('.box');
+        box.addEventListener('mousemove', function (e) {
+            var x = e.pageX - this.offsetLeft;
+            var y = e.pageY - this.offsetTop;
+            this.innerHTML = 'x的坐标是：' + x + '  y的坐标是：' + y;
+        })
+    </script>
+</body>
+
+</html>

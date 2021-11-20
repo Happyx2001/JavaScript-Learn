@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发生短信间隔时间</title>
+    <script>
+        window.addEventListener('load', function () {
+            var btn = document.querySelector('button');
+            var time = 5;     // 剩下的秒数
+            btn.addEventListener('click', function () {
+                btn.disabled = true;
+                var timer = setInterval(function () {
+                    // 判断是否剩余时间 time
+                    if (time == 0) {
+                        // 若时间为 0，则停止计时器，并且复原按钮与时间
+                        clearInterval(timer);
+                        btn.innerHTML = '发送短信';
+                        btn.disabled = false;
+                        time = 5;
+                    } else {
+                        // 若时间不为 0，则显示剩下的时间，并且再次之前不能再次点击按钮
+                        btn.innerHTML = ' 还剩下' + time + '秒';
+                        time--;
+                    }
+                }, 1000)
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div>
+        填写要发送短信的号码：
+        <input type="text" name="" id="" style="width: 200px;">
+        <button>发送短信</button>
+    </div>
+</body>
+
+</html>

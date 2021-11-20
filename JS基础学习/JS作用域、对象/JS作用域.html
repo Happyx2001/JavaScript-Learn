@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作用域</title>
+    <script>
+        // 1. JavaScrpit 作用域：就是代码名字(变量)在某个范围内起作用和效果
+        // 目的是为了提高程序的可靠性，更重要的是减少命名冲突
+        // 1.2 JS作用域分为： 全局作用域、 局部作用域
+        // 1.3 全局作用域：整个script标签 或者 一个单独的JS文件
+        var num = 10;   // 此处num是全局作用域里的变量， 全局变量
+        console.log(num);
+
+        // 1.4 局部作用域(函数作用域)：在函数内部就是局部作用域，这个代码的名字只在函数内部其效果和作用
+        function fu() {
+            // 局部作用域
+            var num = 20;   // 此处num是局部作用域里的变量， 局部变量
+            console.log(num);
+        }
+        fu();
+        console.log(num);  // 局部变量与全局变量命名不冲突
+
+
+        // 2. 变量的作用域： 根据作用域的不同，变量可以分为全局变量和局部变量
+        // 2.1 全局变量： 在全局作用域下的变量， 在全局都可以使用
+        // 注意：在函数内部，没有声明就直接赋值的变量也是全局变量
+        var str = 111;
+        function fn() {
+            var str = 11;
+            str2 = 22;  // 这是其实是全局变量
+        }
+        console.log(str2);
+
+        // 2.2 局部变量： 在局部作用域下的变量， 只能在函数内部使用
+        // ps：形参也是一个局部变量
+
+
+        // 作用域链：内部函数访问外部函数的变量，采取的是链式查找结构，这种结构我们称为作用域链
+        var sum = 10;
+        function fun1() {  // 外部函数
+            var sum = 20;
+            function fun2() {   // 内部函数
+                console.log(sum);  // 一层一层的往外查找   sum = 20 离得最近
+            }
+            fun2();
+        }
+        fun1();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

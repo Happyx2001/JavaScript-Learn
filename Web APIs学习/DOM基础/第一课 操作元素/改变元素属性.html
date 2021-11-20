@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>改变元素属性</title>
+    <script>
+        // 改变元素 “属性”
+
+    </script>
+    <style>
+        img {
+            width: 500px;
+            margin: 50px auto;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <button id="img1">wall1</button>
+    <button id="img2">wall2</button>
+    <button id="img3">wall3</button>
+    <br>
+    <img src="../images/wall1.png" alt="" title="wall1">
+    <br>
+    <button id="btn">这是个按钮</button>
+    <input type="text" value="请输入内容" id="text1">
+
+    <script>
+        // 获取元素
+        var img = document.querySelector('img');  // 获取 img 标签
+        var img1 = document.getElementById('img1');
+        var img2 = document.getElementById('img2');
+        var img3 = document.getElementById('img3');
+        // 注册事件  处理程序
+        img1.onclick = function () {
+            img.src = '../images/wall1.png';  //  修改 img 的 src 属性
+            img.title = "wall1";           //  修改 img 的 title 属性
+        }
+        img2.onclick = function () {
+            img.src = '../images/wall2.png';
+            img.title = "wall2";
+        }
+        img3.onclick = function () {
+            img.src = '../images/wall3.png';
+            img.title = "wall3";
+        }
+
+
+        // 操作表单元素的属性  (表单特有的属性 type, value, disabled)
+        // 点击按钮之后改变表单的 value 属性，然后利用 disabled 禁用按钮
+        // 获取元素
+        var btn = document.getElementById('btn');
+        var input = document.getElementById('text1');
+        // 注册事件
+        btn.onclick = function () {
+            // 表单里的值是用value修改的
+            input.value = '按钮被点击了,且被禁用';
+            // 禁用表单按钮  disabled
+            btn.disabled = true;
+            // 或者 this.diaabled = true ;
+            // this 指向的是事件函数的调用者
+        }
+
+
+
+    </script>
+</body>
+
+</html>

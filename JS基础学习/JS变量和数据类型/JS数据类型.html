@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS的数据类型</title>
+    <script>
+        // JS的变量数据类型是只有程序在运行过程中,根据等号右边的值来确定的
+        var age = 10; //数字型
+        var areYouOK = '是的'; //字符串型
+        // JS是动态语言 变量的数据类型可以变化
+
+        // 简单数据类型(基本数据类型) number, string, boolen, undefined, null
+        // 1. Number: 数字型
+        var a = 10;
+        var b = 3.14159;
+        // ps1.  八进制: 0~7 数字前面加0,表示八进制
+        var ps1 = 010;
+        // ps2. 十六进制: 0~9 A~F #ffffff 数字前面加0x表示十六进制
+        var ps2 = 0xa;
+        // ps3. 数字型的最大值
+        console.log(Number.MAX_VALUE);
+        // ps4. 数字型的最小值
+        console.log(Number.MIN_VALUE);
+        // ps5. 无穷大
+        console.log(Number.MAX_VALUE * 2); //结果 infinity 无穷大
+        // ps6. 无穷小
+        console.log(-Number.MAX_VALUE * 2); //结果 -infinity 无穷小
+        // ps7. isNaN()
+        // 用来判断一个变量是否为'非数字'的类型,返回true或者false(布尔值)
+        console.log(isNaN(123)); // 是数字返回false, 非数字返回true
+
+        // 2. Boolen: 布尔值类型  true(真的)和false(假的)
+        // true参与加法运算当1来看
+        var flag = true;
+        // false参与加法运算当0来看
+        var flag1 = false;
+
+        // 3. string: 字符串型  字符串需加引号
+        var c = '字符串型';
+        var c123 = '123';
+        // ps2. 字符中有单引号时,外面用双引号; 里面有双引号时,外面用单引号
+        var cps2 = '哈哈哈"哈哈"哈哈哈'; //外单内双
+        console.log(cps2);
+        var cps3 = "哈哈哈'哈哈'哈哈哈"; //外双内单
+        console.log(cps3);
+        // ps3. 转义字符: \n 换行, \t 缩进, \b 空格  
+        // 转义字符也得放到''单引号之中
+        console.log('字符\n串型')
+        //ps4. 检测获取字符串的长度 length
+        var myName = '我的名字是';
+        console.log(myName.length); // 显示5
+        // ps5. 字符串的拼接用 "+" ; 什么类型都能拼接;  (非常重要)
+        // 只要是字符串与其他类型相拼接, 最终结果都是字符串类型
+        // 数值相加, 字符相连 !!!
+        console.log('恋爱' + '循环'); //拼接后: 恋爱循环
+        console.log('恋爱' + 18); //拼接后: 恋爱18
+        console.log(18 + 18); //拼接后: 36 都是数字类型会相加
+        console.log('18' + 18); //拼接后: 1818 字符串
+        // 字符串与变量相拼接, 变量可以很方便的修改值
+        console.log('今天天气' + c123 + '真好')
+
+        // 4. Undefined: 声明了变量,没有给值  未定义数据类型
+        var str;
+        console.log(str);  // undefined
+        var variable = undefined;
+        console.log(variable + 'string'); //undefinedstring
+        //NaN undefined和数字相加,最后结果是NaN
+        console.log(variable + 1);
+
+        // 5. Null: 声明了变量,为空值
+        var d = null;
+        console.log(d) //null
+        console.log(d + 'string'); //nullstring
+        console.log(d + 1);  //空值加1, 结果还是1
+
+
+        // 获取变量数据类型 typeof
+        var num = 10;
+        console.log(typeof num);  //结果number
+        var str2 = '数据类型';
+        console.log(typeof str2);  //结果string
+        //var flag = true;
+        console.log(typeof flag);  //结果boolen
+        // var str;
+        console.log(typeof str);  //结果undefin
+        //var d = null;
+        console.log(typeof d);  //结果object
+
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

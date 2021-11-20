@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tab栏 切换效果</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style-type: none;
+        }
+
+        .tab {
+            width: 900px;
+            margin: 100px auto;
+        }
+
+        .tab_list {
+            height: 40px;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        .tab_list li {
+            float: left;
+            height: 40px;
+            line-height: 40px;
+            padding: 0 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .tab_list .current {
+            background-color: #c81623;
+            color: #fff;
+        }
+
+        .item_info {
+            padding: 20px 0 0 20px;
+        }
+
+        .item {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tab">
+        <div class="tab_list">
+            <ul>
+                <li class="current">番剧</li>
+                <li>电影</li>
+                <li>生活</li>
+                <li>游戏</li>
+                <li>科技</li>
+            </ul>
+        </div>
+        <div class="tab_con">
+            <div class="item" style="display: block;">
+                番剧介绍模块
+            </div>
+            <div class="item">
+                电影介绍模块
+            </div>
+            <div class="item">
+                生活介绍模块
+            </div>
+            <div class="item">
+                游戏介绍模块
+            </div>
+            <div class="item">
+                科技介绍模块
+            </div>
+        </div>
+    </div>
+    <script>
+        // 1. 上部分的模块选项卡，点击某个，当前这一个的底色会是红色，其余不变 (排他思想)
+        // 获取元素
+        var tab_list = document.querySelector('.tab_list');
+        var lis = tab_list.querySelectorAll('li');
+        var items = document.querySelectorAll('.item')
+        // 利用for循环绑定点击事件，点完某个，某个变色，其余不变
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].setAttribute('index', i);  // 给每个小 li 设置一个自定义属性值。即：索引号
+            lis[i].onclick = function () {
+                // 排他思想
+                // 去除类名，让其下部分消失
+                for (var i = 0; i < lis.length; i++) {
+                    lis[i].className = '';
+                }
+                // 留下自己
+                this.className = 'current';
+
+
+                // 2. 显示内容模块
+                var index = this.getAttribute('index');    // 这行代码是重点 !!!  91行和 103行
+                // 获取当前的 li 里面的索引号，让浏览器知道我们点了第几个 li
+                // index 是 li 的索引号
+                // 干掉所有人 让其余的 item 这些 div 隐藏
+                for (var i = 0; i < items.length; i++) {
+                    items[i].style.display = 'none';
+                }
+                // 留下自己，让对应的 item 显示出来
+                items[index].style.display = 'block';
+                // 这里用 index 来确定，显示出 items 中的哪个
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

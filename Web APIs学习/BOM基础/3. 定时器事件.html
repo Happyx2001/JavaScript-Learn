@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定时器事件</title>
+    <script>
+        // 3. 定时器事件
+        // 3.1  window.setTimeout   :   在延迟时间之后执行调用函数
+        // window.setTimeout(回调函数, 延迟时间ms)
+        // 函数只调用一次, 就结束定时器
+        // (1): 这个window在调用的时候可以省略
+        // (2): 延迟时间单位是毫秒ms, 可以省略, 默认为 0
+        // (3): 调用函数可以直接写函数, 也可以直接写 函数名
+        // (4): 一个页面可能有很多定时器, 我们经常给定时器添加标识符(即: 名字)
+        window.addEventListener('load', function () {
+            var btn = document.querySelectorAll('button')
+            btn[1].onclick = function () {
+                var timer1 = setTimeout(function () {
+                    alert('延迟 2s 后出现');
+                }, 2000)
+            }
+        });
+        // 或者
+        window.addEventListener('load', function () {
+            var btn = document.querySelectorAll('button')
+            btn[2].onclick = function () {
+                var timer2 = setTimeout(fTime, 4000)
+                function fTime() {
+                    alert('延迟 4s 后出现')
+                }
+            }
+        });
+
+        // 3.12 停止 setTimeout 计时器
+        // window.clearTimeout(计时器的名字)
+
+        // 3.2 window.setInterval(回调函数, 间隔时间ms)
+        // 用法与 setTimeout() 相似
+        // (1): setInterval() 可以重复调用一个函数, 每隔一段时间, 就去回调一次回调函数
+        // 每隔一段时间, 就去回调一次回调函数, 会调用很多次 
+        setInterval(function () {
+            alert('隔了 3s ');
+        }, 3000);
+
+        // 3.22 停止 setInterval 间隔计时器 
+        // window.clearInterval(间隔计时器名字)
+        </script>
+</head>
+
+<body>
+    <button>不用点我</button>
+    <button>延迟 2s 出现</button>
+    <button>延迟 4s 出现</button>
+</body>
+
+</html>

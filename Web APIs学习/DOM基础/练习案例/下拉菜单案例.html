@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下拉菜单案例</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        li {
+            list-style-type: none;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 25px;
+        }
+
+        .nav {
+            /* 这里不用给盒子大小 */
+            margin: 100px;
+        }
+
+        .nav>li {
+            position: relative;
+            float: left;
+            width: 200px;
+            height: 80px;
+            text-align: center;
+        }
+
+        .nav li a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            line-height: 80px;
+            color: black;
+            background-color: pink;
+        }
+
+        .nav li a:hover {
+            color: white;
+            background-color: cornflowerblue;
+        }
+
+        .nav>li ul {
+            position: absolute;
+            display: none;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            border-left: 1px solid #FECC5B;
+            border-right: 1px solid #FECC5B;
+        }
+
+        .nav>li ul li {
+            border-bottom: 1px solid #fecc5b;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="nav">
+        <li>
+            <a href="#">动漫</a>
+            <ul>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">游戏</a>
+            <ul>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">生活</a>
+            <ul>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">科技</a>
+            <ul>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        var uls = document.querySelector('.nav');
+        var lis = uls.children;
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].onmouseover = function () {
+                // 利用当前元素 this 的子节点 children，改变 display 样式
+                this.children[1].style.display = 'block';
+            }
+            lis[i].onmouseout = function () {
+                // 利用当前元素 this 的子节点 children，改变 display 样式
+                this.children[1].style.display = 'none';
+            }
+        }
+    </script>
+</body>
+
+</html>

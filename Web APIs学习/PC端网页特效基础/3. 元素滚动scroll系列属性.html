@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元素滚动scroll系列属性</title>
+    <script>
+        // scroll 翻译过来就是 滚动的，scroll系列相关属性可以动态的得到该元素的大小、滚动距离等等
+
+        // scroll系列经常用于获取滚动距离: scrollTop, scrollLeft
+
+        // scroll系列属性：
+        // element.scrollTop: 返回被卷去的上侧距离，返回的数值不带单位
+        // element.scrollLeft: 返回被卷去的左侧距离，返回的数值不带单位
+        // element.scrollWidth: 返回自身实际 “内容” 的宽度，不含边框，返回的数值不带单位
+        // element.scrollHeight: 返回自身实际 “内容” 的高度，不含边框，返回的数值不带单位
+        // window.scroll(x, y):  滚动窗口至文档中特定的位置，里面的 x y 不用带单位
+
+
+        // ps: scroll是元素被卷去的距离, 获取页面被卷去距离用 window.pageYoffset(上侧距离), window.pageXoffset(左侧距离)
+        // onscroll 事件: 当我们滚动条发生变化时会触发的事件
+    </script>
+    <style>
+        div {
+            width: 300px;
+            height: 400px;
+            margin: 80px auto;
+            background-color: aqua;
+            border: 5px solid #ccc;
+            /* overflow: auto; 设置并且显示滚动条 */
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，
+        我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，
+        我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，
+        我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，
+        我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，我是内容，
+    </div>
+    <div></div>
+    <script>
+        var div = document.querySelectorAll('div');
+        console.log(div[0].scrollWidth);
+        // 返回的是 283, 因为滚动条占据了一部分盒子宽度, 因此 "实际内容" 的宽度变小
+        console.log(div[0].scrollHeight);
+        // 返回的是 811, 是 "实际内容" 的高度
+
+        // onscroll 事件:
+        // 当 div 的滚动条发生变化时, 返回 div 被卷去的上侧距离
+        div[1].innerHTML = '上面的盒子被卷去的上侧距离为:\n'
+        div[0].addEventListener('scroll', function () {
+            console.log(div[0].scrollTop);
+            div[1].innerHTML = '上面的盒子被卷去的上侧距离为:\n' + div[0].scrollTop;
+        })
+    </script>
+</body>
+
+</html>

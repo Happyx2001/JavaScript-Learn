@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>location对象</title>
+    <script>
+        // window 对象中的 location 属性:
+        // location属性用于获取或者设置浏览器窗体的URL, 并且可以解析URL, 
+        // location属性返回的是一个 "对象", 因此location属性也叫location对象
+
+        // URL:
+        // protocol://host[:port]/path/[?query]#fragment
+        // 例如：
+        // https://www.bilibili.com/index.html?name=andy&age=20#link
+
+        // locationd对象的属性：
+        // location.href: 获取或者设置整个URL     (重点)
+        // location.host: 返回主机(域名)  如: www.baidu.com
+        // location.port: 返回端口号, 如果没写则返回空字符串
+        // location.pathname: 返回路径
+        // location.search: 返回参数      (重点)
+        // location.hash: 返回片段   #后面的内容, 常见于链接、锚点
+
+        // location对象的方法：
+        // location.assign(): 跟href一样，可以跳转页面(也叫 重定向页面)
+        // location.replace(): 替换当前页面，但是不能记录历史，无法后退页面
+        // location.reload(): 重新加载页面，相当于刷新页面
+    </script>
+</head>
+
+<body>
+    <!-- location属性的案例 -->
+    <button>点击跳转至bilibili</button>
+    <br>
+    <button style="margin-top: 20px;">5s后跳转至bilibili</button>
+    <div></div>
+    <script>
+        var btn = document.querySelectorAll('button');
+        btn[0].addEventListener('click', function () {
+            location.href = 'https://www.bilibili.com'
+        })
+        var div = document.querySelector('div')
+        var timer = 5;
+        btn[1].addEventListener('click', function () {
+            div.innerHTML = '将在' + timer + '秒钟后跳转至bilibili';
+            timer--;
+            setInterval(function () {
+                if (timer == 0) {
+                    location.href = 'https://www.bilibili.com'
+                } else {
+                    div.innerHTML = '将在' + timer + '秒钟后跳转至bilibili';
+                    timer--;
+                }
+            }, 1000)
+        })
+    </script>
+</body>
+
+</html>

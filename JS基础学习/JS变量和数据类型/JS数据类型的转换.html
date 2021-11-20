@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据类型的转换</title>
+    <script>
+        // 1. 转换为字符串
+        // 1.1  toString() 转成字符串 ( 变量.tostring() )
+        var num1 = 10;
+        var str1 = num1.toString();
+        console.log(str1);
+        console.log(typeof str1);
+        // 1.2 String() 强制转换  转成字符串 ( String(变量) )
+        var num2 = 18;
+        var str2 = String(num2);
+        console.log(str2);
+        console.log(typeof str2);
+        // 1.3 利用 + 拼接字符串的方法实现转换效果  隐式转换
+        console.log(num1 + '字符串');
+
+
+        // 2. 转换为数字型
+        // 2.1 parseInt(变量) 转成整数型  只要整数
+        console.log(parseInt('123'));
+        //会去掉数字后面的单位
+        console.log(parseInt('120px'));
+        console.log(parseInt('3.12'));
+        console.log(parseInt('3.91'));  //都会取整为3
+       
+        console.log(parseInt('abc123')); //若不以数字开头则 NaN
+        // 2.2 parseFloat(变量) 转成浮点型 
+        console.log(parseFloat('1.23'));
+        //会去掉数字后面的单位
+        console.log(parseInt('120px'));
+        
+        console.log(parseInt('abc123')); //若不以数字开头则 NaN
+        // 2.3 Number() 强制转换 转成数字型
+        console.log(Number('456'));
+        // 2.4 利用算数运算 ( - * / )   隐式转换
+        console.log('12' - 6);
+        console.log('33' - '13');
+        console.log('20' * 5);
+
+        // 3. 转为布尔型  Boolen()函数
+        // 代变“0”，空，否定的值都会被转换为false
+        // 如：0、NaN、null、undefined
+        console.log(Boolean(''));
+        console.log(Boolean(0));
+        console.log(Boolean(NaN));
+        console.log(Boolean(null));
+        console.log(Boolean(undefined));
+        // 其余全部为true
+        console.log(Boolean('嘿嘿嘿'));
+        console.log(Boolean(123456));
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

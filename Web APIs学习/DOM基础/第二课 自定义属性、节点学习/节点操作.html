@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节点操作</title>
+    <script>
+        // 节点：节点拥有为 nodeType(节点类型)、nodeName(节点名称)、nodeValue(节点值) 三个基本属性
+        // 元素节点：nodeType = 1； 属性节点：nodeType = 2； 文本节点：nodeType = 3；
+
+        // 节点层级
+        // 利用DOM树，可以将节点划分为不同的层级
+        // 节点操作 1. 2. 3. 节点查找   4. 创建节点   5. 删除节点
+        // 1. 父级节点：node.parentNode
+        // 得到的是离元素最近的父级节点 (即：亲爸爸)，若没有父节点则返回 null
+
+        // 2.1 子级节点：node.childNodes
+        // 返回所有的子节点，包含 元素节点、文本节点等等   (不常用)
+        // PS：文本节点为第一个子节点
+
+        // 2.2 子级节点：node.children  (重点)
+        // 只返回所有的 子元素节点    (实际开发 最常用的方法)
+        // PS：返回第一个子元素节点：div.children[0];
+        //     返回最后一个子元素节点：div.children[div.children.length - 1];
+
+        //2.3 firstChild 第一个子节点，不管是文本节点还是元素节点
+        //    lastChild 最后一个子节点，同上
+        // 2.4 firstElementChild 第一个子元素节点
+        //     lastElementChild 最后一个子元素节点   
+        // 2.4 有兼容性问题  ie9才支持
+
+        // 3. 兄弟节点   (若没有兄弟节点，则返回 null)
+        // 3.1 node.nextSibling  下一个兄弟节点，可以是文本节点、元素节点
+        //     node.previousSibling  上一个兄弟节点，可以是文本节点、元素节点
+        // 3.2 node.nextElementSibling  下一个兄弟 元素 节点
+        //     node.previousElementSibling 上一个兄弟 元素 节点
+        // 3.2 有兼容性问题  ie9才支持
+
+        // 4.1 创建节点、元素节点
+        // document.createElement('TagName')
+        // 4.2 添加节点、添加到父节点的子节点列表的最后。 类似于CSS的 ::After 
+        // node.appendChild(child)   其中 node 为父节点、child 为子节点
+        // 4.3 添加节点、指定元素
+        // node.insertBefore(child, 指定元素位置)  
+        // PS：添加一个 新的元素：1. 创建元素  2. 添加这个元素
+
+        // 5. 删除节点
+        // node.removrChild(child)   从 node(父节点) 中删除一个子节点，并返回删除的节点
+        // eg：del.removeChild(del.children[0]);  删除 del 里面的第一个子元素节点
+
+        // 6. 复制节点
+        // node.cloneNode()  克隆 node 节点
+        // 括号内为 空 或者 false ， 就是 浅拷贝，只复制节点，不复制节点的内容
+        // 括号内为 true ，就是 深度拷贝，复制节点也复制节点的内容
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="box">
+            <div class="tb1"></div>
+            <div class="tb2"></div>
+        </div>
+    </div>
+    <div class="last">
+        <ul class="ful">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+    <div>
+        <div class="b1">我是b1</div>
+        <div class="b2">我是b2</div>
+    </div>
+    <div class="del">
+        <span>1</span>
+        <span>2</span>
+    </div>
+    <script>
+        // 1. 父节点 .parentNode
+        var tb1 = document.querySelector('.tb1');
+        console.log(tb1.parentNode);     //  打印 tb1 的父节点，即：div.box
+        // 得到的是离元素最近的父级节点 (即：亲爸爸)，若没有父节点则返回 null
+
+        // 2.1 获取所有子节点.childNodes 
+        var uls = document.querySelector('.ful');
+        console.log(uls.childNodes);
+        console.log(uls.childNodes[0]);   // 返回文本节点
+        console.log(uls.childNodes[1]);
+        // 2.2 获取子元素节点：node.children  (重点)
+        console.log('');
+        console.log(uls.children);
+        console.log(uls.children[0]);
+        console.log(uls.children[uls.children.length - 1]);    // 数组长度与数组序号总是相差1
+        // 2.3 firstChild、lastChild
+        console.log('');
+        console.log(uls.firstChild);
+        console.log(uls.lastChild);
+        // 2.4 firstElementChild、lastElementChild
+        console.log('');
+        console.log(uls.firstElementChild);
+        console.log(uls.lastElementChild);
+
+        // 3. 兄弟节点
+        console.log('');
+        var b1 = document.querySelector('.b1');
+        var b2 = document.querySelector('.b2');
+        // 3.1 node.nextSibling  下一个兄弟节点，可以是文本节点、元素节点
+        console.log(b1.nextSibling);   // 返回文本节点
+        //     node.previousSibling  上一个兄弟节点，可以是文本节点、元素节点
+        console.log(b2.previousSibling);   // 返回文本节点
+        // 3.2 node.nextElementSibling  下一个兄弟 元素 节点
+        console.log(b1.nextElementSibling);
+        //     node.previousElementSibling
+        console.log(b2.previousElementSibling);
+
+        // 5. 删除节点
+        var del = document.querySelector('.del')
+        del.removeChild(del.children[0]);  // 删除 del 的第一个子节点 
+    </script>
+</body>
+
+</html>

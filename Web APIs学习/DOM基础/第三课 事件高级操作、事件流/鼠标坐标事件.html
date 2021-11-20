@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鼠标坐标事件</title>
+    <style>
+        body {
+            height: 2000px;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        // 鼠标事件对象   MouseEvent
+        document.addEventListener('click', function (e) {
+            // 鼠标相对于浏览器可视区的 X 轴 e.clientX
+            // 鼠标相对于浏览器可视区的 Y 轴 e.clientY
+            console.log('鼠标相对于浏览器可视区的 X 轴为：' + e.clientX);
+            console.log('鼠标相对于浏览器可视区的 Y 轴为：' + e.clientY);
+            console.log('------------');
+            // 鼠标相对于文档页面的 X 轴 e.pageX   重要   
+            // 鼠标相对于文档页面的 Y 轴 e.pageY
+            console.log('鼠标相对于文档页面的 X 轴为：' + e.pageX);
+            console.log('鼠标相对于文档页面的 Y 轴为：' + e.pageY);
+            console.log('------------');
+            // 鼠标相对于文档页面的 X 轴 e.screenX
+            // 鼠标相对于文档页面的 Y 轴 e.screenY
+            console.log('鼠标相对于电脑屏幕的 X 轴为：' + e.screenX);
+            console.log('鼠标相对于电脑屏幕的 Y 轴为：' + e.screenY);
+            console.log('');
+        })
+    </script>
+</body>
+
+</html>

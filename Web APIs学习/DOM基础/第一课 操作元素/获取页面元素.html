@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获取页面元素</title>
+</head>
+
+<body>
+    <div class="box">123</div>
+    <div class="box">456</div>
+    <div id="str">爱我中华</div>
+    <ul id="nav">
+        <li>床前明月光，</li>
+        <li>疑是地上霜。</li>
+        <li>举头望明月，</li>
+        <li>低头思故乡。</li>
+    </ul>
+    <ol>
+        <li>天上白玉京，</li>
+        <li>十二城五楼。</li>
+        <li>仙人抚我顶，</li>
+        <li>结发授长生。</li>
+    </ol>
+    <ol>
+        <li>秦时明月汉时光，</li>
+    </ol>
+    <script>
+        // 1. 因为我们文档页面从上往下加载，所以先得有标签，故：我们script写到标签下面
+        // 2. get 获得 element 元素 by 通过   （getElementBy...）
+
+        // 根据 ID 获取页面元素  document.getElementById('ID名')
+        var str1 = document.getElementById('str')  // 括号里面必须是 字符串
+        console.log(str1);
+        console.log(typeof str1);  // 返回的是一个元素对象
+        console.dir(str1);         // 打印返回的元素对象，更好的查看里面的属性和方法
+
+
+        console.log('');
+        // 根据 标签 获取页面元素  document.getElementsByTagName('标签名')
+        var lis = document.getElementsByTagName('li');
+        // 返回的是一个伪数组
+        console.log(lis);
+        console.log(lis[0]);
+        // 如果页面中没有这个元素，则返回空的伪数组
+        var spans = document.getElementsByTagName('span');
+        console.log(spans);
+        // 还可以获取某个元素(父元素)内部所有指定标签名的子元素
+        var ols = document.getElementsByTagName('ol');
+        console.log(ols);
+        console.log(ols[0].getElementsByTagName('li'));  // 获取第一个 ol 里面的所有 li     
+        // 遍历打印元素对象 li
+        for (var i = 0; i < lis.length; i++) {
+            console.log(lis[i]);
+        }
+
+
+        console.log('');
+        // HTML5 新增的方法 (有兼容性问题)
+        // 根据 类名 获取页面元素：   document.getElementsByClassName('类名')
+        var boxs = document.getElementsByClassName('box');
+        console.log(boxs);
+
+
+        // 推荐用法！！！ 
+        // 根据指定 选择器 返回第一个元素对象： document.querySelector('选择器')
+        // 切记选择器加符号， class选择器为 .class 、ID选择器为 #ID
+        var firstBox = document.querySelector('.box');   // class = box 的第一个元素对象
+        console.log(firstBox);
+        var nav = document.querySelector('#nav');        // ID = nav 的元素对象
+        console.log(nav);
+        var li = document.querySelector('li');        // 标签为 li 的第一个元素对象
+        console.log(li);
+
+        // 根据指定 选择器 返回全部元素对象： document.querySelectorAll('选择器')
+        var allBox = document.querySelectorAll('.box');   // class = box 的全部元素对象
+        console.log(allBox);
+
+
+        console.log('');
+        // 获取特殊元素( body 、 html )
+        // 获取body元素： document.body
+        var bodyEle = document.body;
+        console.log(bodyEle);
+        // 获取html元素： document.documentElement
+        var htmlEle = document.documentElement;
+        console.log(htmlEle);
+    </script>
+</body>
+
+</html>

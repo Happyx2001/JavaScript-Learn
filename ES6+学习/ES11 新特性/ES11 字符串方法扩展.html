@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES11 字符串方法扩展</title>
+    <script>
+        // 1. string.prototype.matchAll 方法 
+        // matchAll() 方法返回一个包含所有匹配正则表达式的结果及其分组捕获组的迭代器
+        // matchAll 对于数据的批量提取，非常有用
+        let str = `
+        <ul>
+            <li>
+                <a>肖生克的救赎</a>
+                <p>上映日期: 1994-09-10</p>
+            </li>
+            <li>
+                <a>阿甘正传</a>
+                <p>上映日期: 1994-07-06</p>
+            </li>
+        </ul>`;
+
+        // 声明正则
+        const reg = /<li>.*?<a>(.*?)<\/a>.*?<p>(.*?)<\/p>/gs
+
+        // 调用方法
+        const result = str.matchAll(reg);
+        console.log(result);
+
+        // 遍历该方法生成的东西
+        // for (let v of result) {
+        //     console.log(v);
+        // }
+
+        // 扩展运算符 扩展该方法生成的东西
+        const arr = [...result];
+        console.log(arr);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

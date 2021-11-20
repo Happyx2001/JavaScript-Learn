@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>放大文本框里的值</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .search {
+            position: relative;
+            width: 200px;
+            margin: 100px;
+        }
+
+        .val {
+            width: 200px;
+        }
+
+        .con {
+            position: absolute;
+            top: -40px;
+            display: none;
+            width: 200px;
+            border: 1px solid rgba(0, 0, 0, .2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+            padding: 5px 0;
+            font-size: 20px;
+            line-height: 20px;
+            color: #333;
+        }
+
+        /* 小三角 */
+        .con::before {
+            content: '';
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: 28px;
+            left: 18px;
+            border: 8px solid #000;
+            border-style: solid dashed dashed;
+            border-color: #fff transparent transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="search">
+        <div class="con"></div>
+        <input type="text" placeholder="请输入值" class="val">
+    </div>
+    <script>
+        var con = document.querySelector('.con');
+        var input = document.querySelector('.val')
+        // 这里不能用 keydown、keypress
+        // keydown、keypress的特点导致，键盘按下的时候，元素还没被放到文本框中
+        // 所以只能用 keyup
+        input.addEventListener('keyup', function (e) {
+            // 如果文本框没值了，就隐藏 con
+            if (this.value == '') {
+                con.style.display = 'none';
+            } else {
+                con.style.display = 'block';
+                // 将元素放到 con 中
+                con.innerHTML = this.value;
+            }
+        })
+        // 当文本框失去焦点就隐藏 con
+        input.addEventListener('blur', function () {
+            con.style.display = 'none';
+        })
+        // 当文本框获得焦点，且不为空就显示 con
+        input.addEventListener('focus', function () {
+            if (this.value != '') {
+                con.style.display = 'block';
+            }
+        })
+    </script>
+</body>
+
+</html>

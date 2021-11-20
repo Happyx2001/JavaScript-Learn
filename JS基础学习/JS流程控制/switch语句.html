@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>switch语句</title>
+    <script>
+        // 1. switch语句也是多分支语句，可以实现多选
+        // 2. 语法  (case 选项、  break 停止查找)
+        // switch (表达式) {
+        //     case value1:
+        //         执行语句1;
+        //         break;
+        //     case value2:
+        //         执行语句2;
+        //         break;
+        //     case value3:
+        //         执行语句3;
+        //         break;
+        //     ...
+        //     default:
+        //         执行最后的语句
+        // }
+        // 本质为匹配：将表达式的值和case选项里面的value值相匹配
+        // 若匹配上，则执行该case里的语句；若没有匹配上，则执行default语句
+
+        // 注意1. 表达式一般写成变量
+        // 注意2. 表达式与value的值得是全等，即 “ === ”
+        // 注意3. break必写，如果不写break，则不会退出switch，会继续执行下一个case
+
+        // 练习
+        var fruits = prompt('请输入你要的水果');
+        switch (fruits) {
+            case '苹果':
+                alert('20块');
+                break;
+            case '梨':
+                alert('18块');
+                break;
+            case '香蕉':
+                alert('23块');
+                break;
+            case '水蜜桃':
+                alert('35块');
+                break;
+            case '芒果':
+                alert('40块');
+                break;
+            default:
+                alert('没有这种水果');
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

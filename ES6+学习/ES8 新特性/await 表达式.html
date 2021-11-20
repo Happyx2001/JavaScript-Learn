@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>await 表达式</title>
+    <script>
+        // async 和 await 两种语法结合可以让异步代码像同步代码一样
+
+        // await 表达式：
+        // 1. await 必须写在 async 函数中
+        // 2. await 右侧的表达式一般为 promise 对象
+        // 3. await 返回的是 promise 成功的值  !!!
+        // 4. await 的 promise 失败了，就会抛出异常，需要通过 try...catch 捕获处理
+
+        // 创建 promise 对象
+        const p1 = new Promise((resolve, reject) => {
+            resolve('成功的结果');
+        })
+
+        const p2 = new Promise((resolve, reject) => {
+            reject('失败的情况');
+        })
+
+        // await 要放到 async 函数中
+        async function fn1() {
+            let result = await p1;
+            console.log(result);
+        }
+
+        async function fn2() {
+            // await 的 promise 失败了，就会抛出异常，需要通过 try...catch 捕获处理
+            try {
+                let result = await p2;
+                console.log(result);
+            } catch (e) {  
+                console.log(e);
+            }
+        }
+
+        // 调用函数
+        fn1();
+        fn2();
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

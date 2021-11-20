@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>箭头函数的运用</title>
+    <style>
+        .box1 {
+            width: 300px;
+            height: 300px;
+            background-color: cadetblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1"></div>
+    <script>
+        // 案例1. 点击盒子之后2s 颜色改变
+        // 普通函数的方法
+        // let box1 = document.querySelector('.box1');
+        // box1.addEventListener('click', function () {
+        //     setTimeout(function () {
+        //         box1.style.backgroundColor = 'pink';
+        //     }, 2000)
+        // });
+
+        // 使用箭头函数的方法
+        let box1 = document.querySelector('.box1');
+        box1.addEventListener('click', function () {
+            setTimeout(() => {
+                // 箭头函数的 this 是静态的，指向的是箭头函数声明时所在的作用域
+                // 因此这里的 this 指向的是 点击事件函数，而点击事件函数指向事件源 box1
+                // 因此这里的 this 指向 box1
+                this.style.backgroundColor = 'pink';
+            }, 2000)
+        });
+
+        // 案例2. 返回数组中偶数的元素
+        const arr = [1, 4, 22, 53, 69, 100];
+        // 普通函数的方法
+        // filter(条件) 方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素
+        const result1 = arr.filter(function (item) {
+            if (item % 2 === 0) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+        console.log(result1);
+
+        // 使用箭头函数的方法
+        const result2 = arr.filter(item => item % 2 === 0);
+        console.log(result2);
+
+        // 总结:
+        // (1): 箭头函数适合与 this 无关的回调, 定时器, 数组的方法回调
+        // (2): 箭头函数不适合与 this 又关的回调, 事件回调, 对象的方法回调
+        // PS: 不适合不是不能
+    </script>
+</body>
+
+</html>

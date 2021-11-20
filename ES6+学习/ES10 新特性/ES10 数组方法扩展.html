@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES10 数组方法扩展 flat 和 flatMap</title>
+    <script>
+        // flat()
+        // 将 多维数组 转化为 低维数组
+        let arr1 = [1, 2, 3, 4, [5, 6, 7, 8, 9]]    // 二维数组
+        let arr2 = [1, 2, 3, 4, [5, 6, [7, 8, 9]]]  // 三维数组
+
+        console.log(arr1);
+        console.log(arr1.flat());
+        console.log('');
+
+        // flat() 的参数表示深度 三维数组 深度为 2 (默认为 1 )
+        console.log(arr2);
+        console.log(arr2.flat(1));
+        console.log(arr2.flat(2));
+
+        console.log('');
+        // flatMap()
+        // flatMap() 可以将函数返回的 多维数组 转换为 一维数组
+        // flatMap() 相当于对每个数组元素 执行一遍 flat()
+        let arr3 = [1, 2, 3, 4];
+        let result1 = arr3.map(item => [item * 10]);
+        let result2 = arr3.flatMap(item => [item * 10]);
+        console.log(result1);
+        console.log(result2);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

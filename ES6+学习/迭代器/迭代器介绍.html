@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>迭代器介绍</title>
+    <script>
+        // 迭代器：iterator 是一种接口，为各种不同的数据结构提供统一的访问机制
+        // 任何数据结构只要部署了 iterator 接口，就可以完成遍历操作
+
+        // 1. ES6 创造了一种新的遍历命令 for...of 循环，iterator接口主要用于 for...of
+        // 2. 原始具备 iterator 接口的数据(即：可用for...of循环)
+        //    Array、Arguments、Set、Map、String、TypedArray、NodeList
+        // 3. 工作原理：
+        //     (1): 创建一个指针对象，指向当前数据结构的起始位置
+        //     (2): 第一次调用对象的 next 方法，指针自动指向数据结构的第一个成员
+        //     (3): 然后不断调用 next 方法，指针一直往后移动，直到指向最后一个成员
+        //     (4): 每调用 next 方法就返回一个包括 value 和 done 属性的对象(done 表示迭代器是否完成)
+
+        // 声明一个数组
+        const shuzu = ['张三', '李四', '王五', '赵六', '郑七'];
+
+        // 使用 for...in 遍历数组
+        for (let k in shuzu) {
+            console.log(k);         // 输出的是数组的索引号
+            console.log(shuzu[k]);  // 输出的是数组的值
+        }
+
+        console.log('');
+        // 使用 for...of 遍历数组
+        for (let v of shuzu) {
+            console.log(v);         // 输出的是数组键值 value
+        }
+
+        // 原理解剖
+        let iterator = shuzu[Symbol.iterator]();
+        console.log(iterator);
+        // 调用 iterator 接口的 next 
+        console.log(iterator.next());   // {value: "张三", done: false}
+        console.log(iterator.next());   // {value: "李四", done: false}
+        console.log(iterator.next());   // {value: "王五", done: false}
+        console.log(iterator.next());   // {value: "赵六", done: false}
+        console.log(iterator.next());   // {value: "郑七", done: false}
+        console.log(iterator.next());   // {value: undefined, done: true}
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

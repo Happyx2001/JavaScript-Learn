@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简易ATM</title>
+    <script>
+        // 结合 do while 循环和 switch 语句
+        // 灵活运用 continue 和 break
+        var last = 100;
+        var num1 = 0;
+        var num2 = 0;
+        do {
+            var mod = prompt('请输入你要进行的操作\n1. 存钱\n2. 取钱\n3. 显示余额\n4. 退出');
+            switch (mod) {
+                case '1':
+                    num1 = Number(prompt('请输入你要存储的金额'));
+                    last += num1;
+                    continue;
+                case '2':
+                    num2 = Number(prompt('请输入你要取出的金额'));
+                    last -= num2;
+                    continue;
+                case '3':
+                    alert('你的余额是' + last);
+                    continue;
+                case '4':
+                    alert('再见！');
+                    break;
+                default:
+                    alert('没有这个选项，请重新选择！');
+                    continue;
+            }
+        } while (mod != 4)
+
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

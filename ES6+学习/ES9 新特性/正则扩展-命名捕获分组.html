@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正则扩展-命名捕获分组</title>
+    <script>
+        // 命名捕获
+        // 声明一个字符串
+        let str1 = '<a href="https://www.bilibili.com">bilibili</a>';
+
+        // 提取 url 与 标签文本   捕获： (.*)
+        const reg1 = /<a href="(.*)">(.*)<\/a>/;
+
+        // 执行
+        // exec() 方法用于检索字符串中的正则表达式的匹配
+        const result1 = reg1.exec(str1);
+
+        console.log(result1);
+
+
+        // ES9 正则扩展-命名捕获分组
+        // 可以将 捕获到的元素 进行分组方便以后调用
+        let str2 = '<a href="https://www.bilibili.com">bilibili</a>';
+        const reg2 = /<a href="(?<url>.*)">(?<text>.*)<\/a>/;
+        const result2 = reg2.exec(str1);
+        console.log(result2);
+        console.log(result2.groups.url);
+        console.log(result2.groups.text);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

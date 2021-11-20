@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组的运用</title>
+    <script>
+        console.log('1');
+        // 1. 求数组的元素和以及平均值
+        var arr = [1, 4, 23, 55, 11, 32];
+        var sum = 0;
+        var average = 0;
+        // 遍历数组，相加元素
+        for (var i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+        average = sum / arr.length;
+        console.log(sum, average);
+        console.log('2');  // 充当分割线
+
+        // 2. 求数组中的最大值
+        var max = arr[0];
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+        console.log('该数组的最大值为：' + max);
+        console.log('3');
+
+        // 3. 将数组转换为字符串
+        var str = '';
+        var sep = '|'
+        for (var i = 0; i < arr.length; i++) {
+            str += arr[i] + sep;
+        }
+        console.log(str)
+        console.log('4');
+
+        // 4. 创建数组，并在里面存放10个整数
+        var arr4 = [];
+        for (var i = 0; i < 10; i++) {
+            arr4[i] = i + 1;
+        }
+        console.log(arr4);
+        console.log('5.1');
+
+        // 5. 筛选数组  将数组中大于等于10的元素选出来，放入新数组
+        // 方法一
+        var arr5 = [2, 0, 6, 1, 77, 0, 52, 0, 25, 7];
+        var new_arr5 = [];  // 设置空数组
+        var n = 0;   // 新数组索引号
+        for (var i = 0; i < arr5.length; i++) {
+            // 选取大于等于10的元素
+            if (arr5[i] >= 10) {
+                // 新数组索引号从0开始，依次递增
+                new_arr5[n] = arr5[i];
+                n++;
+            }
+        }
+        console.log(new_arr5);
+        console.log('5.2');
+        // 方法二
+        var arr6 = [2, 0, 6, 1, 77, 0, 52, 0, 25, 7];
+        var new_arr6 = [];  // 设置空数组
+        for (var i = 0; i < arr5.length; i++) {
+            // 选取大于等于10的元素
+            if (arr5[i] >= 10) {
+                // 新数组的数组长度就是从0开始，且每一次增加元素后，长度自然会加 1
+                new_arr6[new_arr6.length] = arr5[i];
+            }
+        }
+        console.log(new_arr6);
+        console.log('6');
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设置延迟关闭广告</title>
+    <script>
+        window.addEventListener('load', function () {
+            var btn = document.querySelectorAll('button');
+            var img = document.querySelector('img');
+            btn[0].addEventListener('click', function () {
+                var time1 = setTimeout(function () {
+                    img.style.display = 'none';
+                }, 3000)
+            })
+            btn[1].addEventListener('click', function () {
+                img.style.display = 'block';
+            })
+        })
+    </script>
+    <style>
+        img {
+            width: 400px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p>假装这是个广告↓</p>
+        <button>3s后关闭广告</button>
+        <button>显示广告</button>
+    </div>
+    <img src="../DOM基础/images/wall.png" alt="">
+</body>
+
+</html>

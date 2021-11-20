@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生成器函数参数</title>
+    <script>
+        // 生成器函数
+        function* gen(alr) {
+            console.log(alr);
+            let a1 = yield 111;
+            console.log(a1);   // 第二个 next 的实参作为第一个 yield 的返回结果
+            let a2 = yield 222;
+            console.log(a2);   // 第三个 next 的实参作为第二个 yield 的返回结果
+            let a3 = yield 333;
+            console.log(a3);   // 第四个 next 的实参作为第三个 yield 的返回结果
+        }
+
+        // 执行获取迭代器对象
+        let iterator = gen('ABC');
+        console.log(iterator.next());
+        // next 也可以传入实参
+        console.log(iterator.next('ONE'));   // 这边第二个 next 的实参传给了第一个 yield, 返回的是所传递的实参
+        console.log(iterator.next('TWO'));   // 同理
+        console.log(iterator.next('THREE'));   // 同理
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

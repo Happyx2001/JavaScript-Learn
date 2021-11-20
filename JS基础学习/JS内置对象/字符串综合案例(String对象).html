@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字符串综合案例</title>
+    <script>
+        // 初始字符串 'abaasdffggghhjjkkgfddsssss3444343'
+        var str = 'abaasdffggghhjjkkgfddsssss3444343';
+        // 1.字符串长度
+        var str_len = str.length;
+        console.log(str_len);
+        // 2. 取出指定位置的字符串：0，3，5，9
+        var str_0 = str[0];  // 或者 str_0=str.charAt(0)
+        var str_3 = str[3];
+        var str_5 = str[5];
+        var str_9 = str[9];
+        console.log(str_0, str_3, str_5, str_9);
+        // 3. 查找指定字符是否在初始字符串中存在：i，c，b
+        var str_i = str.indexOf('i');
+        var str_c = str.indexOf('c');
+        var str_b = str.indexOf('b');
+        if (str_i == -1) {
+            console.log('初始字符串中不存在字符 i');
+        } else {
+            console.log('初始字符串中存在字符 i')
+        }
+        if (str_c == -1) {
+            console.log('初始字符串中不存在字符 c');
+        } else {
+            console.log('初始字符串中存在字符 c')
+        }
+        if (str_b == -1) {
+            console.log('初始字符串中不存在字符 b');
+        } else {
+            console.log('初始字符串中存在字符 b')
+        }
+        // 4. 替换指定的字符：g 替换为 22，ss 替换为 b
+        var str_22 = str;
+        while (str_22.indexOf('g') !== -1) {
+            str_22 = str_22.replace('g', '22');
+        }
+        console.log(str_22);
+        var str_b = str;
+        while (str_b.indexOf('ss') !== -1) {
+            str_b = str_b.replace('ss', 'b');
+        }
+        console.log(str_b);
+        // 5. 截取指定开始位置到结束位置的字符串：取得 1-5 的字符串
+        var str_15 = str.substr(1, 5);
+        console.log(str_15);
+        // 6. 找出初始字符串中出现次数最多的字符和次数
+        // 结合对象，将初始字符串中每个字符出现的次数存放在一个对象中
+        // 属性名就是是字符名，属性值就是字符出现次数
+        var max = {};
+        for (var i = 0; i < str.length; i++) {
+            var chars = str[i];
+            if (max[chars]) {    // 这里是判断max里面有没有[chars]这个属性，max[chars]得到的是属性值
+                max[chars]++;
+            } else {
+                max[chars] = 1;
+            }
+        }
+        console.log(max);
+        var count = 0;
+        var ch = '';
+        for (var k in max) {   // 遍历对象，max[k] 是属性值，k 是属性名
+            if (max[k] > count) {   // if 语句找属性值最大的属性
+                count = max[k];
+                ch = k;
+            }
+        }
+        console.log('最多的字符是：' + ch);
+        console.log('出现次数为：' + count);
+
+
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

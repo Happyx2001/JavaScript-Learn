@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>client系列属性</title>
+    <script>
+        // client系列属性：
+        // client就是客户端，通过client系列属性可以动态的获得该元素的边框大小、元素大小等
+
+        // client系列经常用于获取元素大小: clientHeight, clientWidth
+
+        // element.clientTop: 返回元素上边框的大小
+        // element.clientLeft: 返回元素左边框的大小
+        // 重点 ↓
+        // element.clientWidth: 返回自身包括 padding、内容区的宽度，不含边框，返回数值不带单位
+        // element.clientHeight: 返回自身包括 padding、内容区的高度，不含边框，返回数值不带单位
+    </script>
+    <style>
+        div {
+            width: 300px;
+            height: 400px;
+            margin: 100px auto;
+            border-top: 10px solid #ccc;
+            border-left: 5px solid red;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div>client系列属性</div>
+    <script>
+        var div = document.querySelector('div');
+        console.log('元素上边框的大小为：' + div.clientTop);
+        console.log('元素左边框的大小为：' + div.clientLeft);
+        console.log('自身包括 padding、内容区的宽度为：' + div.clientWidth);
+        console.log('自身包括 padding、内容区的高度为：' + div.clientHeight);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>迭代器自定义遍历数据</title>
+    <script>
+        // eg:
+        // 声明一个对象
+        const team = {
+            name: '例子案例',
+            stus: [
+                '张三',
+                '李四',
+                '王五',
+                '赵六',
+                '郑七'
+            ],
+            // 给这个对象添加 iterator 接口，实际上是添加了一个方法
+            [Symbol.iterator]() {
+                let index = 0;   // 索引变量
+                // this 指向这个 team 对象
+                let _this = this;
+                return {
+                    next: function () {    // 自定义遍历 
+                        if (index < _this.stus.length) {
+                            const result = { value: _this.stus[index], done: false }
+                            // 下标自增
+                            index++;
+                            // 返回结果
+                            return result;
+                        } else {
+                            return { value: undefined, done: true }
+                        }
+                    }
+                }
+            }
+        }
+        // 需求: 遍历 team 这个对象而且每次返回的结果是数组 stus 里面的成员(使用 for...of)
+        // for (let i = 0; i < team.stus.length; i++) {
+        //     console.log(team.stus[i]);
+        // }
+        // 遍历这个对象  (for...of 对接 team 对象所添加的 iterator 接口)
+        for (let v of team) {
+            console.log(v);
+        }
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

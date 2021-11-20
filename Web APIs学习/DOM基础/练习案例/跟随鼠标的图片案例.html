@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跟随鼠标的图片案例</title>
+    <style>
+        img {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="../images/wall.png" alt="">
+    <script>
+        var img = document.querySelector('img')
+        // 1. 只要我们鼠标移动就触发这个事件
+        document.addEventListener('mouseover', function (e) {
+            // 2. 获取鼠标的坐标
+            var x = e.pageX;
+            var y = e.pageY;
+            console.log('鼠标的坐标为X轴:' + x + ' Y轴为:' + y);
+            // 3. 将鼠标的坐标给图片
+            // 注意: 一定要加拼接单位!!!
+            img.style.left = x + 'px';
+            img.style.top = y + 'px';
+        });
+    </script>
+</body>
+
+</html>

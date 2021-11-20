@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES10 对象方法扩展 Object.formEntries</title>
+    <script>
+        // Object.fromEntries()方法是Object.entries()的逆操作
+        // 用于将一个 键值对数组 转为 对象
+        // Map 转 对象
+
+        // 二维数组转为对象
+        const result = Object.fromEntries([
+            ['name', '张三'],
+            ['cities', '北京,上海,广州,深圳']
+        ]);
+
+        console.log(result);
+
+        // Map 转为对象
+        const m = new Map();
+        m.set('name', '李四');
+        m.set('age', 20)
+        const result2 = Object.fromEntries(m);
+
+        console.log(result2);
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

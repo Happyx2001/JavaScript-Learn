@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>let案例</title>
+    <style>
+        p {
+            font-size: 40px;
+            border-bottom: 1px solid gray;
+        }
+
+        .box2 {
+            float: left;
+            width: 200px;
+            height: 100px;
+            border: 1px solid red;
+            margin: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <p>点击切换颜色</p>
+    <div class="box1">
+        <div class="box2"></div>
+        <div class="box2"></div>
+        <div class="box2"></div>
+    </div>
+    <script>
+        let box2 = document.querySelectorAll('.box2');
+        for (let i = 0; i < box2.length; i++) {
+            // 1. 如果 for 里面的 i 用 var 声明的话这个点击事件就不会触发
+            box2[i].addEventListener('click', function () {
+                box2[i].style.backgroundColor = 'pink';
+            })
+        }
+        // 案例详解:
+        // 如果用 var 声明 i :     (var 是全局声明)
+        // 当我们打开页面的时候, for的循环添加事件已经结束, 此时 i=3 
+        // 所以当我们点击任何一个方块时, 改变的都是 box2[3] 的颜色, 但是box2没有[3], 因此报错且方块颜色不变
+
+        // 如果用 let 声明 i :
+        // 循环时的情况是
+        // {
+        //     let i = 0;
+        //     box2[i].addEventListener('click', function () {
+        //         box2[i].style.backgroundColor = 'pink';
+        //     }
+        // }
+        // 每一次循环 i 的值都保存到当前循环的块区域上去了
+        // 点击事件发生时，寻找的box2[i]的值，就是当初循环块里面的 i 的值
+    </script>
+</body>
+
+</html>

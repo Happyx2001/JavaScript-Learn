@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类的get和set</title>
+    <script>
+        // class 的 get 、 set
+        // get 读取触发函数：一般用于封装 class 里面的动态属性
+        // set 赋值触发函数
+        let _price = 3000;
+        class Phone {
+            // PS：在这里 price 是属性！
+            get price() {    // get 之后，只要我们读取price属性，就会执行这个函数里面的代码
+                console.log('价格属性被读取了');
+                return _price;    // 该函数的返回值，就是这个属性的值
+            }
+
+            set price(Val) {   // set 之后，只要我们对price属性进行赋值操作时，就会执行这个函数里面的代码
+                // set 后面必须带单位
+                if (Val > 2500) {
+                    console.log('价格属性被修改了');
+                    _price = Val;
+                }
+            }
+        }
+
+        // 实例化对象
+        let p = new Phone();
+
+        console.log(p.price);   // 读取 price 属性，触发 get 且会输出 price 的属性值
+        console.log('');
+        p.price = 5000;    // 赋值 price 属性
+        console.log('');
+        console.log(p.price);
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6 对象方法扩展</title>
+    <script>
+        // 1. Object.is 判读两个值是否完全相等
+        console.log(Object.is(100, 100));
+        console.log(Object.is(100, 10));
+        console.log(Object.is(NaN, NaN));  // true
+        console.log(NaN === NaN);          // false
+        console.log('');
+
+        // 2. Object.assign 对象的合并
+        // 如果两个对象有相同的属性名，后面对象的属性值会覆盖前面对象的属性值
+        // 如果是不相同的属性名，则合并
+        const Obj1 = {
+            name: '张三',
+            age: 18,
+            city: '深圳',
+            fenshu: 120
+        };
+
+        const Obj2 = {
+            name: '李四',
+            age: 20,
+            city: '广州',
+            game: 'LOL'
+        };
+
+        console.log(Object.assign(Obj1, Obj2));
+        console.log('');
+
+        // 3. Object.setPrototypeOf  设置原型对象   
+        // Object.getPrototypeOf  获取原型对象
+        const uname = {
+            name: '王五'
+        }
+        const cities = {
+            city: ['北京', '上海', '广州', '深圳']
+        }
+        Object.setPrototypeOf(uname, cities);  // 将 uname 的原型对象设置为 cities
+        console.log(Object.getPrototypeOf(uname));  // 得到 uname 的原型对象
+        console.log(uname);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

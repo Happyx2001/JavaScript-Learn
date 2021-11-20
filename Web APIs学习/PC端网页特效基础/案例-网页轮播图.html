@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页轮播图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        li {
+            float: left;
+            list-style: none;
+        }
+
+        .imgs {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1000%;
+        }
+
+        img {
+            width: 600px;
+            height: 350px;
+            vertical-align: middle;
+        }
+
+        .main {
+            position: relative;
+            margin: 100px auto;
+            width: 600px;
+            height: 350px;
+            overflow: hidden;
+        }
+
+        .arrow-left {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 40px;
+            height: 40px;
+            background-color: black;
+            opacity: .4;
+            transform: translateY(-50%);
+            z-index: 99;
+            line-height: 40px;
+            text-align: center;
+            color: white;
+            font-size: 25px;
+        }
+
+        .arrow-right {
+            display: none;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            background-color: black;
+            opacity: .4;
+            transform: translateY(-50%);
+            z-index: 99;
+            line-height: 40px;
+            text-align: center;
+            color: white;
+            font-size: 25px;
+        }
+
+        .dian {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            height: 20px;
+            background-color: #ccc;
+            opacity: .8;
+            border-radius: 10px;
+            transform: translateX(-50%);
+            z-index: 99;
+        }
+
+        .dian li {
+            float: left;
+            margin: 2px 4px;
+            height: 16px;
+            width: 16px;
+            border-radius: 8px;
+            border: 2px solid white;
+        }
+
+        .current {
+            background-color: red;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <a class="arrow-left" href="javascript:;">←</a>
+        <a class="arrow-right" href="javascript:;">→</a>
+        <ol class="dian"></ol>
+        <ul class="imgs">
+            <li><img src="images/wall1.png" alt=""></li>
+            <li><img src="images/wall2.png" alt=""></li>
+            <li><img src="images/wall3.png" alt=""></li>
+            <li><img src="images/wall4.png" alt=""></li>
+            <li><img src="images/wall5.png" alt=""></li>
+        </ul>
+    </div>
+    <script>
+        // 1. 获取元素
+        var ul = document.querySelector('.imgs');
+        var main = document.querySelector('.main');
+        var dian = document.querySelector('.dian');
+        var arrow_l = document.querySelector('.arrow-left');
+        var arrow_r = document.querySelector('.arrow-right');
+        var mainWidth = main.offsetWidth;
+        // 2. 设置鼠标经过 main 显示左右按键，并且停止定时器
+        main.addEventListener('mouseenter', function () {
+            arrow_l.style.display = 'block';
+            arrow_r.style.display = 'block';
+            clearInterval(timer);    // 停止定时器
+            timer = null;            // 清除定时器变量  
+        })
+        // 离开 main 隐藏左右按键，并且开启定时器
+        main.addEventListener('mouseleave', function () {
+            arrow_l.style.display = 'none';
+            arrow_r.style.display = 'none';
+            timer = setInterval(function () {
+                arrow_r.click();
+            }, 2000)
+        })
+        // 3. 动态生成小圆圈，有几张图片就生成几个小圆圈
+        for (var i = 0; i < ul.children.length; i++) {
+            // 创建 li
+            var li = document.createElement('li');
+            // 记录小圆圈的索引号, 通过自定义属性
+            li.setAttribute('index', i);
+            // 将 li 插入到 ol 里面
+            dian.appendChild(li);
+            // 4. 小圆圈的点击事件，排他思想
+            // 当我们点击一个小圆圈时，先清空全部小圆圈样式，再设置我们点击的那个小圆圈样式 
+            li.addEventListener('click', function () {
+                for (var i = 0; i < dian.children.length; i++) {
+                    dian.children[i].className = '';
+                };
+                this.className = 'current';
+                // 5. 点击小圆圈，移动图片                      注意: 移动的是 ul
+                // ul 的目标距离 = 小圆圈的索引号 * 图片的宽度   注意: 值是负数
+                // 当我们点击了某个 小圆圈 ，就拿到当前 小圆圈 的索引号
+                var index = this.getAttribute('index');
+                animate(ul, - index * mainWidth);
+                // 当我们点击了某个 小圆圈 ， 就将这个 小圆圈 的索引号给 num   (防止bug)
+                num = index;
+                // 当我们点击了某个 小圆圈 ， 就将这个 小圆圈 的索引号给 circle   (防止bug)
+                circle = index;
+            });
+        };
+        // 设置 ol 里面的第一个孩子的类名为 current (即：默认第一个是被选中的)
+        dian.children[0].className = 'current';
+
+        // 6. 点击右侧按钮 arrow-right ,图片滚动一张
+        // 7. 先克隆第一张图片 li 放到 ul 最后面
+        var first = ul.children[0].cloneNode(true);   // cloneNode(true) 深克隆，节点里面的内容也一起克隆
+        ul.appendChild(first);
+        var num = 0;     // num 控制 左右按钮的播放
+        var circle = 0;  // circle 控制 小圆圈的播放
+        var flag = true;  // 节流阀的设置
+        // 右侧按钮
+        arrow_r.addEventListener('click', function () {
+            if (flag) {       // 判断节流阀是否开启
+                flag = false;    // 节流阀关闭
+                // 如果走到了最后克隆的第一张图片, 此时 ul 要快速复原 left 为 0 
+                if (num == ul.children.length - 1) {
+                    num = 0;
+                    ul.style.left = 0;
+                };
+                num++;
+                animate(ul, - num * mainWidth, function () {
+                    flag = true;   // 利用回调函数，动画执行完毕再打开节流阀
+                });
+                // 8. 点击右侧按钮, 小圆圈跟随着一起变化, 首先声明了 circle 变量控制小圆圈的播放
+                circle++;
+                // 如果circle == 5 就说明走到了最后克隆的第一张图片了, 需要复原 circle
+                if (circle == dian.children.length) {
+                    circle = 0;
+                };
+                // 排他思想, 清空全部小圆圈
+                for (var i = 0; i < dian.children.length; i++) {
+                    dian.children[i].className = '';
+                };
+                // 再留下当前的小圆圈
+                dian.children[circle].className = 'current';
+            };
+        });
+
+        // 9. 左侧按钮
+        arrow_l.addEventListener('click', function () {
+            if (flag) {       // 判断节流阀是否开启
+                flag = false;     // 节流阀关闭
+                // 如果当前图片是第一张时，ul 需要定到最后一张克隆图片的位置
+                if (num == 0) {
+                    num = ul.children.length - 1;
+                    ul.style.left = -num * mainWidth + 'px';
+                };
+                num--;
+                animate(ul, - num * mainWidth, function () {
+                    flag = true;   // 利用回调函数，动画执行完毕再打开节流阀
+                });
+                circle--;
+                if (circle < 0) {
+                    circle = dian.children.length - 1;
+                };
+                // 排他思想, 清空全部小圆圈
+                for (var i = 0; i < dian.children.length; i++) {
+                    dian.children[i].className = '';
+                };
+                // 再留下当前的小圆圈
+                dian.children[circle].className = 'current';
+            };
+        });
+
+        // 10. 轮播图自动播放 
+        // 自动播放实际上等于点击了右侧按钮，只不过用定时器代替了点击事件
+        var timer = setInterval(function () {
+            arrow_r.click();   // 手动调用点击事件
+        }, 2000);
+
+
+
+        // 缓动动画函数
+        function animate(obj, target, callback) {
+            // 清除计时器 timer
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function () {
+                // 设置步长step = (目标位置 - 对象的当前位置) / 10
+                var step = (target - obj.offsetLeft) / 10;
+                // 为了消除小数，所以用Math取整数，大于0向上取整，小于0向下取整
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                obj.style.left = obj.offsetLeft + step + 'px';
+                // 到达目标位置后，清除计时器 timer
+                if (obj.offsetLeft == target) {
+                    clearInterval(obj.timer);
+                    // 回调函数写到计时器结束里面
+                    if (callback) {   // 判断有没有回调函数
+                        callback();   // 调用函数
+                    }
+                };
+            }, 30)
+        };
+    </script>
+</body>
+
+</html>

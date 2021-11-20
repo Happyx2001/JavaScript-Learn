@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for循环案例</title>
+    <script>
+        // 求班级学生们的总成绩以及平均成绩
+        // 要求先输入班级人数，之后依次输入每个学生的成绩，最后打印出班级的总成绩以及平均成绩 
+        var num = prompt('请输入班级的学生人数');  // 输入班级人数
+        var sum = 0;   //总成绩变量
+        for (var i = 1; i <= num; i++) {
+            //因为prompt取得的数据是“字符串型”，因此需要转换为数字型
+            var cj = prompt('请输入第' + i + '名学生的成绩');
+            cj = parseFloat(cj);
+            sum += cj;  // 学生成绩相加得总成绩
+        }
+        var average = sum / num;  // 班级平均成绩
+        alert('班级的总成绩为' + sum);
+        console.log('班级的总成绩为' + sum);
+        alert('班级的平均成绩为' + average)
+        console.log('班级的平均成绩为' + average);
+
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

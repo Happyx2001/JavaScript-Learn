@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义属性</title>
+    <script>
+        // 目的：保存并使用数据。有些数据可以保存到页面中而不用保存到数据库中
+
+        // 1. 获取属性值
+        // (1) element.属性名：获取属性值：获取的是内置属性值(元素本身自带的属性)
+        // (2) element.getAttribute('属性名'); 主要获得自定义的属性   (一般情况下使用这个获取自定义属性，兼容性问题不大)
+
+        // 2. 设置属性值
+        // (1) element.属性名 = '值'   设置内置属性的值
+        // (2) element.setAttribute('属性名', '值');   主要修改自定义属性
+
+        // 3. 移除属性
+        // element.removeAttribute('属性名')
+
+        // 4. H5 规定：自定义属性用 data- 开头作为属性名并且赋值
+         // eg：<div data-index="1" > </div>   data-index 就是H5自定义属性
+         // PS：有很大的兼容性问题，获取自定义属性一般用 element.getAttribute
+        // H5 新增：获取属性值方法：element.dataset.index 或者 element.dataset['index']    // 获得 data-index 的自定义属性
+        // dataset 是个集合，里面存放了所有以 data 开头的自定义属性
+    </script>
+</head>
+
+<body>
+    <div id="dome" index="abcd" class="class1"></div>
+    <!-- div 里面的 index 就是自定义属性 -->
+    <div class="box1"></div>
+    <div class="box2" data-index="20" data-list-name="alex"></div>
+    <script>
+        // 获取元素
+        var div = document.querySelector('div');
+        // 1. 获取属性值
+        // 1.(1) element.属性
+        console.log(div.id);
+        console.log(div.className);   // 调用 class 要用 className
+        // 1.(2) element.getAttribute('属性名') 
+        console.log(div.getAttribute('id'));
+        console.log(div.getAttribute('index'));  // 调用自定义属性 index
+
+
+        console.log('');
+        // 2. 设置属性值
+        // 2.(1) element.属性 = '值'
+        div.id = '123';    // 修改 div 的 id 为 123
+        div.className = 'clas12';
+        console.log(div.id);
+        console.log(div.className);   // 调用 class 要用 className
+        // 2.(2) element.setAttribute('属性名', '值')
+        div.setAttribute('index', 'fkls');   // 修改 div 的自定义属性 index 为 fkls
+        div.setAttribute('class', 'class123');
+        console.log(div.getAttribute('index'));
+        console.log(div.getAttribute('class'));    // 这里特殊，调用 class 属性，直接写 class 就行
+
+
+        console.log('');
+        // 3. 移除属性
+        div.removeAttribute('index');
+        console.log(div.getAttribute('index'));  // 因为自定义属性 index 已经被移除了，所以显示 null
+
+
+        console.log('');
+        // 4.    H5 新增的自定义属性
+        var box2 = document.querySelector('.box2');
+        console.log(box2.dataset.index);   // 打印 box2 的自定义属性 data-index 的值
+        console.log(box2.dataset['index']);
+        // 如果自定义属性中有 多个- 链接的单词，我们获取的时候采取，驼峰命名法
+        console.log(box2.dataset.listName);  // 打印 box2 的自定义属性 data-list-name 的值
+        console.log(box2.dataset['listName']);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>变量的解构赋值</title>
+    <script>
+        // ES6 允许按照一定的模式从数组和对象中提取值，对变量进行赋值，称为解构赋值
+        // 1. 数值的解构
+        const TEAM = ['张三', '李四', '王五', '赵六'];
+        let [san, si, wu, liu] = TEAM;
+        console.log(san);
+        console.log(si);
+        console.log(wu);
+        console.log(liu);
+        console.log('');
+
+        // 2. 对象的解构
+        const zhao = {
+            a1: '赵本山',
+            a2: '不知道',
+            a3: function () {
+                console.log('我会演小品');
+            }
+        };
+
+        let { a1, a2, a3 } = zhao;
+        console.log(a1);
+        console.log(a2);
+        console.log(a3);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

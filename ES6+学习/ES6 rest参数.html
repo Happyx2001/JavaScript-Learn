@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rest参数</title>
+    <script>
+        // ES6 引入 rest 参数，用于获取函数的实参，用来代替 arguments
+        // ES5 获取实参的方式,   返回的实参是"对象"形式
+        function date1() {
+            console.log(arguments);
+        }
+        date1('张三', '李四', '王五');
+
+        // ES6 rest参数获取实参  (...args)   rest 参数返回的实参是数组形式
+        function date2(...args) {
+            console.log(args);
+        }
+        date2('张三', '李四', '王五');
+
+        // rest 参数 要放到最后
+        function date3(a, b, ...args) {
+            console.log(a);
+            console.log(b);
+            console.log(args);
+        }
+        date3('张三', '李四', '王五', '赵六', '郑七');
+
+        // 区别: arguments 返回的实参是对象形式, rest 参数返回的实参是"数组"形式
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

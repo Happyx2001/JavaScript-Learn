@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简单计算器</title>
+    <script>
+        // 1. 简单的计算器
+        // 声明函数
+        function getNum(mod1, mod2, mod3) {
+            switch (mod3) {   // 运用switch语句选择计算器的功能
+                case '1':
+                    return mod1 + mod2;
+                case '2':
+                    return mod1 - mod2;
+                case '3':
+                    return mod1 * mod2;
+                case '4':
+                    return mod1 / mod2;
+                default:
+                    break;
+            }
+        }
+
+        var num1 = Number(prompt('请输入第一个数字'));   // 只有数字型才能正常的加减乘除, 因此得转换为数字型
+        var num2 = Number(prompt('请输入第二个数字'));
+        var mod = prompt('请选择要进行的计算:\n1. 相加+\n2. 相减-\n3. 相乘*\n4. 相除/');  //  选择计算器的功能
+        // 调用函数
+        var all = getNum(num1, num2, mod);
+        alert(num1 + '和' + num2 + '的计算结果为:' + all);
+        console.log(all);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symbol给对象添加属性和方法</title>
+    <script>
+        // 向对象中添加方法
+        // 方法 1.
+        let name1 = {
+            name: '张三',
+            up: function () { },
+            down: function () { }
+        };
+
+        // 声明一个对象
+        // (这里的 up, down是Symbol唯一标签, 并不代表 up、down函数)
+        let methods = {
+            up: Symbol(),
+            down: Symbol()
+        };
+
+        // 将 up down 作为方法添加进name1对象
+        name1[methods.up] = function () {
+            console.log('好好学习，天天向上');
+        }
+        name1[methods.down] = function () {
+            console.log('学习如逆水行舟，不进则退');
+        }
+        console.log(name1);
+
+        // 方法2.
+        let name2 = {
+            name: '李四',
+            [Symbol('say')]: function () {
+                console.log('我能够说话！');
+            },
+            [Symbol('play')]: function () {
+                console.log('我能够玩耍！');
+            }
+        }
+        console.log(name2);
+
+        // PS: 调用添加的属性和方法(方法2)
+        // 先定义Symbol属性值，用做于对象属性名
+        let say = Symbol('say');
+        let play = Symbol('play');
+        let name3 = {
+            name: '王五',
+            [say]: function () {
+                console.log('我能够说话！');
+            },
+            [play]: function () {
+                console.log('我能够玩耍！');
+            }
+        }
+        console.log(name3);
+        // 调用格式 ↓
+        name3[say]();
+        name3[play]();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

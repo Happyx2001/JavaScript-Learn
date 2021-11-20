@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态生成表格</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        table {
+            margin: 100px auto;
+            border-collapse: collapse;
+
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        th {
+            width: 100px;
+            height: 50px;
+            color: black;
+            background-color: #ccc;
+            border: 1px solid black;
+        }
+
+        td {
+            width: 100px;
+            height: 50px;
+            color: black;
+            background-color: white;
+            border: 1px solid black;
+            text-align: center;
+            line-height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <table cellspacing='0'>
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>科目</th>
+                <th>成绩</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <script>
+        // 1. 准备学生数据 (模拟)
+        var datas = [{
+            name: '张三',
+            subject: 'JS',
+            score: 100
+        }, {
+            name: '李四',
+            subject: 'JS',
+            score: 78
+        }, {
+            name: '王五',
+            subject: 'JS',
+            score: 89
+        }, {
+            name: '赵六',
+            subject: 'JS',
+            score: 56
+        }, {
+            name: '颜七',
+            subject: 'JS',
+            score: 98
+        }]
+
+        // 2. 在 tbody 中创建行，通过数组长度判断有几行
+        var tbody = document.querySelector('tbody');
+        for (var i = 0; i < datas.length; i++) {
+            // 创建 tr 元素
+            var tr = document.createElement('tr');
+            // 添加 tr 元素到 tbody
+            tbody.appendChild(tr);
+            // 3.1 创建的单元格 td (与对象有关的单元格)， td 存在于单元行 tr 中，且单元格的数量取决于每个对象的属性个数
+            for (var k in datas[i]) {   // 用 for 循环，遍历对象数组
+                var td = document.createElement('td');
+                tr.appendChild(td);
+                // 4. 将对象数组的属性值赋予 td
+                td.innerHTML = datas[i][k];
+            }
+            // 3.2 创建删除单元格
+            var td = document.createElement('td');
+            tr.appendChild(td);
+            td.innerHTML = '<a href="javascript:;">删除</a>'
+        }
+        // 5. 给删除功能标签 a ，添加删除功能 tr 的功能
+        var del = document.querySelectorAll('a');
+        for (var i = 0; i < del.length; i++) {
+            del[i].onclick = function () {
+                tbody.removeChild(this.parentNode.parentNode);
+                // this 指向的是函数的调用者 del[i]，他的父节点的父节点就是 tr
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>while案例</title>
+    <script>
+        // 案例1  打印一个人的一生
+        var year = 1;
+        while (year <= 100) {
+            console.log('现在是' + year + '岁');
+            year += 1;
+        }
+
+        // 案例2  求1~100直接整数的和
+        var sum = 0;  // 总和
+        var i = 1;  // 计数器 兼 所有整数的代表
+        while (i <= 100) {
+            sum += i;
+            i++;
+        }
+        console.log(sum);
+
+        // 案例3  不停弹出提示框
+        // 如果不输入123, 则会一直循环提示'请输入123'
+        var ai = prompt('请输入123');
+        while (ai != 123) {
+            ai = prompt('请输入123');
+        }
+        alert('你真听话');
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

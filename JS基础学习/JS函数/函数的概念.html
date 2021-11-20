@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数的概念</title>
+    <script>
+        // 函数：封装了一段可被 “重复调用” 执行的代码块，可以实现大量代码的反复调用
+        // 函数都是为了实现某种功能而出现的
+        // 使用方法：声明函数 和 调用函数
+
+        // 1. 声明函数
+        // function 函数名() {
+        //     函数体
+        // }
+        function sayHi() {
+            console.log('你好呀');
+        }
+        // 注意 1. function 声明函数的关键字 全部小写            
+        //      2. 函数名，一般为动词 sayHi
+        //      3. 函数不调用自己不会执行
+
+
+        // 2. 调用函数
+        //   函数名 ()
+        sayHi();  //  小括号() 必写
+
+
+        // 3. 函数的参数   实参、形参
+        // function 函数名(形参1, 形参2...) {   //声明函数 的小括号里的就是 形参(形式上的参数)
+        //    函数体
+        // }
+        // 函数名(实参1, 实参2...)   // 调用函数 的小括号里的是 实参(实际的参数)
+        // eg1.
+        function doIt(aru) {  // aru就是形参， 形参是接受实参的， 形参类似于一个变量
+            console.log(aru);
+        }
+        doIt('函数的概念');  // ()里面的就是实参， 实参是传递给形参的
+        // 注意 1. 只有当实参的个数和形参的个数一致时，才能输出正常的结果
+        //      2. 如果实参个数多余形参个数，只会取到形参的个数
+        //      3. 形参可以看作是不用声明的变量，如果实参个数小于形参个数，多余的形参会是undefined，导致结果为NaN
+
+
+        // 4. 函数的返回值 return
+        // 格式：
+        // function 函数名() {
+        //     return 需要返回的结果;
+        // }
+        // 函数名();
+        function getResult() {
+            return 123;
+        }
+        getResult();
+        console.log(getResult());
+        // 只要函数遇到return, 就会把后面的结果返回给函数的调用者, 函数名() = return后面的结果
+        // 注意 1. return 会终止函数, return后面的代码不会被执行
+        //      2. return只能返回一个值. 如果要返回多个值, 可以用数组包含所有值,然后返回
+        // eg: return num1, num2, num3;  会返回num3, 即返回最后一个值
+        //      3. 如果函数没有return, 则返回的是undefined
+
+        // 5. arguments的使用
+        function fu() {
+            console.log(arguments);
+            // 里面存储了所有传递过来的实参
+        }
+        fu(1, 2, 3);
+        // arguments的特点
+        // 5.1 存储的实参存放在一个 “伪数组” 中  (伪数组：不是真正意义上的数组)
+        // 5.2 具有数组的 length属性
+        // 5.3 按照索引的方式进行存储
+        // 5.4 伪数组没有真正数组的一些方法: pop()、push() 等等
+
+
+        // 6. 函数可以调用相互调用  重点！！！！
+        function fn1() {
+            console.log(111);
+            fn2();  // fn1 函数里面 调用 fn2 函数
+            //  调用函数需要加小括号
+        }
+        function fn2() {
+            console.log(222);
+        }
+        fn1();   // 结果会打印出 111 222
+
+
+        console.log('');
+        // 7. 函数的不同声明方式
+        // 方式一：  利用函数的关键字自定义函数(命名函数)
+        function fp1(aru1) {     //  声明函数里面存的是变量
+            console.log('声明函数方式一');
+            console.log(aru1);
+        }
+        fp1('阿巴阿巴阿巴');
+        // 方式二：  函数表达式(匿名函数)
+        // 注意: 函数表达式调用必须写在函数表达式的下面 !!!
+        var fp2 = function (aru2) {    //  函数表达式里面存的是函数
+            console.log('声明函数方式二');
+            console.log(aru2);
+        }
+        fp2('阿巴阿巴阿巴');
+        // 采用方式二时，fp2是变量名，不是函数名
+        //  函数表达式也可以传递参数
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

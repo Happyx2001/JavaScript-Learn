@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>禁用鼠标右键菜单、禁止选中文件</title>
+    <style>
+        div {
+            margin: 100px auto;
+            width: 400px;
+            height: 50px;
+            background-color: red;
+            line-height: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div>你不能对我鼠标右键，并且不能选中我！</div>
+    <script>
+        var div = document.querySelector('div')
+        // 1. 禁用鼠标右键菜单
+        // contextmenu 右键菜单
+        div.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        })
+        // 2. 禁用鼠标右键菜单
+        // selectstart 选中文字
+        div.addEventListener('selectstart', function (e) {
+            e.preventDefault();
+        })
+
+    </script>
+</body>
+
+</html>

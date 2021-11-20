@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高级注册事件</title>
+    <script>
+        // 给元素添加事件，就是 注册事件 或者 绑定事件
+        // 注册事件的两种方式：传统方式 和 方法监听注册方式
+
+        // 注册事件  (绑定事件)
+        // 1. 传统注册方式
+        // 1.1 利用 on 开头的事件 如：onclick
+        // 1.2 <button onclick="alert('hi~')"></button>
+        // 1.3 btn.onclick = function() {}
+        // 特点：注册事件的 “唯一性”
+        // 同一个元素 同一个事件只能设置一个处理函数，最后注册的处理函数会覆盖前面注册的处理函数
+
+        // 2. 方法监听注册方式   (ie9 以上才支持)
+        // eventTarget.addEventListener()方法，将指定的监听器注册到 eventTarget(目标对象)上，当该对象触发指定的事件时，就会执行事件处理函数
+        // addEventListener(type, listener[, useCapture])
+        // 属性意义：
+        // type：事件类型字符串，比如：'click'、'mouseover'， (不用带 on)
+        // listener：事件处理函数，事件发生时，会调用该监听函数
+        // useCaptrue：可选参数，是一个布尔值，默认为 false: 处于事件流中的冒泡阶段, true: 处于事件流中的捕获阶段
+        // 特点：
+        // 同一个事件 同一个元素可以添加多个监听器(事件处理程序)
+        // 里面的事件类型是字符串，必须加引号，而且不带 on
+
+
+
+        // 删除事件  (解绑)
+        // 1. 传统方式
+        // eventTarget.onclick = null;  
+
+        // 2. 方法监听注册方式
+        // eventTarget.removerEventListener()
+        // eg：
+        // divs[1].addEventListener('click', fn)    // 注意这里的 fn 不用加小括号
+        // function fn() {
+        //    alert('删除事件');
+        //    divs[1].removerEventListener('click', fn)
+        // }
+    </script>
+</head>
+
+<body>
+    <button>传统注册事件</button>
+    <br>
+    <button>方法监听注册事件</button>
+    <script>
+        var btns = document.querySelectorAll('button');
+        // 1. 传统注册方式
+        btns[0].onclick = function () {
+            alert('传统注册事件1');
+        }
+        // 唯一性：最后注册的处理函数会覆盖前面注册的处理函数
+        // 因此只会显示 '传统注册事件2'
+        btns[0].onclick = function () {
+            alert('传统注册事件2');
+        }
+
+        // 2. 方法监听注册方式
+        btns[1].addEventListener('click', function () {
+            alert('方法监听注册事件1');
+        })
+        // 同一个事件 同一个元素可以添加多个监听器(事件处理程序)
+        // 无论几个都会显示，只是顺序不一样
+        btns[1].addEventListener('click', function () {
+            alert('方法监听注册事件2');
+        })
+
+        // 3. 方法监听注册方式 下的 删除事件
+        btns[1].addEventListener('click', fn);  // 注意这里的 fn 不用加小括号
+        function fn() {
+            alert('方法监听注册事件3');
+            btns[1].removeEventListener('click', fn);
+            // 运行过一次后，解绑事件
+        }
+    </script>
+</body>
+
+</html>

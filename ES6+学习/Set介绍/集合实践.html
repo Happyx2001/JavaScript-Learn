@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>集合实践</title>
+    <script>
+        let arr1 = [1, 2, 3, 4, 5, 4, 3, 2, 1];
+        let arr2 = [4, 5, 6, 5, 6];
+
+        // 1. arr1数组去重
+        // 原理：利用集合 Set 的值具有唯一性的特点，数组转换为集合的时候，集合会自动去重
+        let result1 = [...new Set(arr1)];
+        console.log(result1);
+
+        // 2. arr1和arr2交集
+        let result2 = [...new Set(arr1)].filter(item => {
+            let s2 = new Set(arr2);
+            return s2.has(item);
+        });
+        // let result2 = [...new Set(arr1)].filter(item => new Set(arr2).has(item));
+        console.log(result2);
+
+        // 3. arr1和arr2并集
+        // 扩展运算符 拼接 数组
+        let union = [...new Set([...arr1, ...arr2])];
+        console.log(union);
+
+        // 4. arr1差集  (交集的逆运算)
+        let diff = [...new Set(arr1)].filter(item => {
+            let s2 = new Set(arr2);
+            return !(s2.has(item));
+        });
+        // let diff = [...new Set(arr1)].filter(item => !(new Set(arr2).has(item)));
+        console.log(diff);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

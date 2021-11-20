@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS对象练习</title>
+    <script>
+        // 1. 创建一个电脑对象
+        // 有颜色(color) 、重量(weight) 、品牌(brand) 、型号(type)等属性，
+        // 有看电影(watch) 、听音乐(listen) 、打游戏(play)和敲代码(coding)等方法。
+        // 题目描述：
+        // 颜色、重量、品牌、型号是属性；看电影、听音乐、打游戏、敲代码是方法，在调用方法时分别打印 “我在看电影 / 听音乐 / 打游戏 / 敲代码”
+        var computer = {   // 电脑对象
+            color: '银色',    // 注意: 这种创建对象的方式, 属性和方法之间用 逗号 ,隔开
+            weight: '5kg',
+            brand: 'rog',
+            type: 'xxxA',
+            watch: function () {
+                console.log('我在看电影');
+            },
+            listen: function () {
+                console.log('我在听音乐');
+            },
+            play: function () {
+                console.log('我在打游戏');
+            },
+            coding: function () {
+                console.log('我在敲代码');
+            }
+        }
+        console.log(computer.color);
+        console.log(computer.weight);
+        console.log(computer.brand);
+        console.log(computer.type);
+        computer.watch();    // 注意调用对象的方法的时候 函数一定要加上 ()
+        computer.coding();
+        computer.listen();
+        computer.play();
+
+
+        console.log('');
+        // 2. 遍历下面对象
+        var dog = {
+            dName: "coco",
+            type: "阿拉斯加犬",
+            age: "5岁",
+            color: "棕红色"
+        };
+        // 答案
+        for (var k in dog) {
+            console.log(k);
+            console.log(dog[k]);
+        }
+
+
+        console.log('');
+        // 3. 请描述下面代码的输出结果以及运行原因
+        var num = 1;
+        function demo() {
+            console.log(num);
+            function demoSon() {
+                console.log(num);
+                num = 3;
+                console.log(num);
+            }
+            var num = 2
+            demoSon();
+        }
+        demo();
+        // 相当于              因此输出的结果是: undefined, 2, 3, 
+        // var num;
+        // function demo() {
+        //     var num;
+        //     function demoSon() {
+        //         console.log(num);
+        //         num = 3;
+        //         console.log(num);
+        //     }
+        //     console.log(num);
+        //     num = 2
+        //     demoSon();
+        // }
+        // num = 1;
+        // demo();
+
+
+        console.log('');
+        // 4. 请使用arguments完成函数getResult，实现得到输入的所有的数值中的最小值、最大值、平均数、总和等功能
+        // ​作业描述：
+        // ​函数名：getResult
+        // 函数调用方式：getResult(数值1，数值2，数值3，数值4.....)
+        // ​函数功能：返回值是一个对象，这个对象有sum, max, min, averages等属性，分别表示实参的总和、最大值、最小值、平均数等
+
+        function GetResult() {
+            var arr = arguments;
+            this.sum = sumAll(arr);
+            this.max = maxAll(arr);
+            this.min = minAll(arr);
+            this.averages = avAll(arr);
+        }
+        function sumAll() {  // 求和函数
+            var sum = 0;
+            for (var i = 0; i < arguments.length; i++) {
+                sum += arguments[i];
+            }
+            return sum;
+        }
+        function sumAll(arr) {  // 求和函数
+            var sum = 0;
+            for (var i = 0; i < arr.length; i++) {
+                sum += arr[i];
+            }
+            return sum;
+        }
+        function maxAll(arr) {  // 求最大函数
+            var max = arr[0];
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] > max) {
+                    max = arr[i]
+                }
+            }
+            return max;
+        }
+        function minAll(arr) {  // 求最小函数
+            var min = arr[0];
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] < min) {
+                    min = arr[i]
+                }
+            }
+            return min;
+        }
+        function avAll(arr) {  // 求平均值函数
+            var sum = 0;
+            for (var i = 0; i < arr.length; i++) {
+                sum += arr[i];
+            }
+            return sum / arr.length;
+        }
+
+        var all = new GetResult(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        console.log(all.sum);
+        console.log(all.max);
+        console.log(all.min);
+        console.log(all.averages);
+
+
+        // ## 2 - 进阶练习
+        console.log('');
+        // 1. 书写一个函数，判断指定数据是否存在于指定数组中
+        // 要求：
+        // 函数名称：exist
+        // 函数调用方式：exist(数据data，数组arr)
+        // 函数功能：判断“数据data”是否存在于“数组arr”中，如果是函数返回值为true，如果不是函数返回值为false
+        var arr1 = [11, 23, 145, 42, 19, 76, 55];
+        var data1 = 123;
+        var data2 = 23;
+        function exist(data, arr) {
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] == data) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        console.log(exist(data1, arr1));
+        console.log(exist(data2, arr1));
+
+
+        // 2. 以下有两个数组，一个数组arr是班级里所有的学员的名称，一个数组currentArr是提交了每日反馈的学员名单，请创建一种算法，把未提交每日反馈的学员筛选出来
+        var arr = ["张瑞淑", "徐海涛", "谢岗岗", "薛鹏", "魏明杨", "党婷", "熊飞", "郑翠翠", "李航卫", "屈涛", "汪孝双", "代攀飞", "武志钰", "王亚龙", "周芙榕", "李涛", "郝颖", "文冲洋", "王旭拯", "胡佳豪", "寇晓丽", "马晓晗", "王思聪", "张绿", "李德", "郑萍", "张凯", "张嘉成", "葛云侠", "杨磊", "任变", "景德", "高卷林", "刘益凡", "赵娜", "陈章鸣", "张荣召", "赵凯旋", "程倩倩", "脱朝平", "刘吉利", "郭苗苗", "马建峰", "潘瑞", "闫翔", "马晨", "李轩轩", "黄红梅", "刘书彬", "罗强", "刘东", "王可可", "陈泽文", "李嘉琪", "段佳琦", "黄燕", "邱淑鸿", "宋翔宇", "王波", "樊琳", "王兆国", "许成", "李兴"];
+
+        var currentArr = ["张瑞淑", "徐海涛", "谢岗岗", "薛鹏", "魏明杨", "党婷", "熊飞", "郑翠翠", "李航卫", "屈涛", "汪孝双", "代攀飞", "武志钰", "王亚龙", "周芙榕", "李涛", "郝颖", "文冲洋", "王旭拯", "胡佳豪", "寇晓丽", "马晓晗", "张绿", "李德", "郑萍", "张凯", "张嘉成", "葛云侠", "杨磊", "任变", "景德", "高卷林", "刘益凡", "赵娜", "陈章鸣", "张荣召", "赵凯旋", "程倩倩", "脱朝平", "刘吉利", "郭苗苗", "马建峰", "潘瑞", "闫翔", "马晨", "李轩轩", "黄红梅", "刘书彬", "罗强", "刘东", "陈泽文", "李嘉琪", "段佳琦", "黄燕", "邱淑鸿", "宋翔宇", "王波", "樊琳", "王兆国", "许成", "李兴"];
+
+        function suanfa(arr, currentArr) {
+            var new_arr = [];   // 创建一个空数组, 来存放筛选出的元素
+            var flag = true;  // 匹配判断, 若是匹配到了就是true, 没匹配到就是false
+            for (var i = 0; i < arr.length; i++) {
+                for (var j = 0; j < currentArr.length; j++) {
+                    if (arr[i] === currentArr[j]) {  // 将arr和currentArr 一一比对
+                        flag = true;
+                        break;   // 匹配到时, 剩下去的就没必要继续比对了
+                    } else {
+                        flag = false;
+                    }
+                }
+                if (flag === false) {   // 没匹配上的, 存放到新数组中
+                    new_arr[new_arr.length] = arr[i];
+                }
+            }
+            return new_arr;  // 输出新数组
+        }
+        console.log(suanfa(arr, currentArr));
+
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

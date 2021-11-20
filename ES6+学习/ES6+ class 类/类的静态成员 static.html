@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类的静态成员 static</title>
+    <script>
+        // class 类中被 static 标注的属性和方法
+        // 是属于 类 的而不是属于 实例化对象 
+        class Phone {
+            // 静态属性 static
+            static name = '手机';
+            static gongneng() {
+                console.log('我可以改变世界');
+            }
+        }
+
+        let huawei = new Phone();
+        console.log(huawei.name);   // undefined
+        console.log(Phone.name);
+        // console.log(huawei.gongneng());   // 报错
+        Phone.gongneng();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

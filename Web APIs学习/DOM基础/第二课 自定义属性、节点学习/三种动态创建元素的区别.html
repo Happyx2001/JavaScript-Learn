@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三种动态创建元素的区别</title>
+    <style>
+        div {
+            width: 200px;
+            height: 2px;
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+        // 总结：不同浏览器下，innerHTML 效率要比 createElement 高
+
+        // 1. document.write() 
+        // 直接将内容写入页面的内容流，但是会导致页面全部 “重绘”
+
+        // 2. innerHTML
+        // 创建多个元素效率更高(不要拼接字符串、采取数组形式的拼接)，结构稍微复杂
+
+        // 3. createElement()
+        // 创建多个元素效率稍微低一点点，但是结构更加清晰
+
+        // 总结：不同浏览器下，innerHTML 效率要比 createElement 高
+    </script>
+</head>
+
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <script>
+        var box1 = document.querySelector('.box1');
+        var box2 = document.querySelector('.box2');
+
+        // 2. innerHTMl   ：  数组形式拼接
+        function fx() {
+            var arr = [];
+            var f1 = +new Date();
+            for (var i = 0; i <= 10000; i++) {
+                arr.push('<div></div>');
+            }
+            box2.innerHTML = arr.join('');
+            var f2 = +new Date();
+            console.log(f2 - f1);
+        }
+        fx();
+
+
+        console.log('');
+        // 3.createElement()
+        function fn() {
+            var d1 = +new Date();
+            for (var i = 0; i <= 10000; i++) {
+                var div = document.createElement('div');
+                box1.appendChild(div);
+            }
+            var d2 = +new Date();
+            console.log(d2 - d1);
+        }
+        fn();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>集合</title>
+    <script>
+        // ES6 新的数据结构 Set(集合) 类似于数组，但是成员的值都是唯一的
+        // 具有 iterator 接口，可以使用 扩展运算符、for...of遍历
+
+        // 声明一个 set
+        let s1 = new Set();
+        let s2 = new Set(['张三', '李四', '王五', '赵六'])
+        console.log(s1);
+        console.log(s2);
+
+        // for...of 遍历
+        for (let v of s2) {
+            console.log(v);
+        }
+
+        console.log('');
+        // 集合的属性
+        // 1. 元素的个数  size
+        console.log(s2.size);
+        // 2. 添加元素 add()
+        s2.add('郑七');
+        console.log(s2);
+        // 3. 删除元素 delete()
+        s2.delete('王五');
+        console.log(s2);
+        // 4. 检测元素 has()   返回的是布尔值
+        console.log(s2.has('张三'));
+        // 5. 清空元素 clear()
+        s2.clear();
+        console.log(s2);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

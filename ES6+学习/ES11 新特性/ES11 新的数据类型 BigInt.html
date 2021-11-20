@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BigInt</title>
+    <script>
+        // 大整形 BigInt (特点: 最后跟着个 n)
+        let n = 521n;
+        console.log(n, typeof (n));
+
+
+        // 当函数使用, 将数据类型转换为 大整形
+        let n2 = 12345;
+        console.log(BigInt(n2));
+        // console.log(BigInt(1.2));
+
+
+        // 用于 大数值运算
+        let max = Number.MAX_SAFE_INTEGER;
+        // 大数值在进行运算时会发生计算错误
+        console.log(max + 2);   // 9007199254740992
+        console.log(max + 3);   // 9007199254740994
+        // 计算出错
+
+        // 解决方法：将数值都转换为 BigInt 类型 再进行运算
+        console.log(BigInt(max) + BigInt(2));   // 9007199254740993n
+        console.log(BigInt(max) + BigInt(3));   // 9007199254740994n
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

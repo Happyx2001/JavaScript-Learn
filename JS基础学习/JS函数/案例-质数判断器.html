@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>质数判断器</title>
+    <script>
+        // 2. 质数判断  (质数: 只能被自身和1整除的数)
+        // 声明函数
+        function getZhi(mod) {
+            if (mod == 1) {   // 首先判断是不是1, 1不是质数
+                var num = mod + '不是质数';
+                return num;  // 返回值
+            } else {
+                // 由于质数的特性: 将目标数 除于 1到目标数 之间的所有数. 若能被整除,则不是质数
+                for (var i = 2; i < mod; i++) {
+                    if (mod % i == 0) {  // 能被整除, 则不是质数
+                        var num1 = mod + '不是质数';
+                        return num1;  //返回值
+                    }
+                }
+                var num2 = mod + '是质数';
+                return num2;  //返回值
+            }
+        }
+        // 由于return的特性, 当目标数被判断完毕之后, 会立马返回值并且停止函数
+        var zhishu = Number(prompt('质数判断器\n请输入一个数:'));
+        // 调用函数
+        var result = getZhi(zhishu);
+        alert(result);
+        console.log(result);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

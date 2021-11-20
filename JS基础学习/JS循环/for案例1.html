@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for循环案例</title>
+    <script>
+        // 案例一
+        //1. 求1~100之间所有数的平均值
+        var sum = 0;
+        var average = 0;
+        for (var i = 1; i <= 100; i++) {
+            sum = sum + i;  //  sum += i;
+        }
+        //1~100求和之后除于100即可
+        average = sum / 100;
+        console.log('1~100之间所有数的平均值为' + average);
+
+
+        //2. 求1~100之间所有偶数和奇数的和
+        var ji_sum = 0;
+        var ou_sum = 0;
+        for (var i = 1; i <= 100; i++) {
+            // 利用if语句判断是否为奇数、偶数
+            if (i % 2 == 0) {
+                ou_sum += i;
+            } else {
+                ji_sum += i;
+            }
+        }
+        console.log('1~100之间所有奇数的和为' + ji_sum);
+        console.log('1~100之间所有偶数的和为' + ou_sum);
+
+
+        // 3. 求1~100之间所有能被3整除的数字的和
+        var sum_3 = 0;
+        for (var i = 1; i <= 100; i++) {
+            // 利用if语句判断是否为3的倍数
+            if (i % 3 == 0) {
+                sum_3 += i;
+            } else {
+                sum_3 = sum_3;
+            }
+        }
+        console.log('1~100之间所有能被3整除的数字的和为' + sum_3);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

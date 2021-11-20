@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>传递URL参数(2)</title>
+</head>
+
+<body>
+    你好！
+    <div></div>
+    <script>
+        var div = document.querySelector('div');
+        console.log(location.search);
+        // 获取URL参数
+        // 1. 先将 ？ 去除
+        // 运用 substr() 截取字符串，(1)表示从位置 1 开始，截取之后的全部
+        var canshu = location.search.substr(1);
+        console.log(canshu);
+        // 2. 利用 = 将字符串分割成数组
+        // 运用 split('=')
+        var arr = canshu.split('=');
+        console.log(arr);
+        // 3. 将数据写入 div 中
+        div.innerHTML = arr[1] + '先生';
+    </script>
+</body>
+
+</html>

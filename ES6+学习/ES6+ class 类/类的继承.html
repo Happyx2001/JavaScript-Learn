@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类的继承</title>
+    <script>
+        // 1. 类的继承
+        class Father1 {     // 父类
+            constructor() {
+
+            }
+            baba() {
+                console.log('类的继承');
+            }
+        }
+        // 让子类继承父类 语法模板：  (extends)
+        class Son1 extends Father1 {   // 子类
+
+        }
+        // 子类可以调用一些父类的函数
+        let son1 = new Son1();
+        son1.baba();
+
+
+
+        // 2. super 关键字
+        // super 关键字用于访问和调用对象父类上的函数，可以调用父类的构造函数，也可以调用父类的普通函数
+        class People {     // 父类
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            hobby(game) {
+                console.log(this.name + '喜欢玩' + game);
+            }
+        }
+        // 让子类继承父类 语法模板：  (extends)
+        class Man extends People {   // 子类
+            constructor(name, age, city, school) {
+                super(name, age);   // super 就是父类的构造方法 constructor
+                this.city = city;
+                this.school = school;
+                // super 关键字用于访问和调用对象父类上的函数
+                // 可以调用父类的构造函数
+                // 也可以调用父类的普通函数
+            }
+            music() {
+                console.log('我能听歌');
+            }
+        }
+        let man1 = new Man('张三', 18, '深圳', '深圳中学');
+        let man2 = new Man('李四', 17, '深圳', '深圳高级中学');
+        console.log(man1);
+        console.log(man2.name);
+        man1.hobby('LOL');
+        man2.hobby('王者荣耀')
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for循环打印⭐</title>
+    <script>
+        //1. 打印星星⭐
+        var num = prompt('请输入要打印几个⭐')
+        var str = '';
+        for (var i = 1; i <= num; i++) {
+            str = str + '⭐';
+            //  如果直接用console.log()，则达不到预期效果
+        }
+        alert(str);
+        console.log(str);
+
+        //2. 打印五行五列⭐  
+        // 运用for的多重循环
+        var str2 = '';
+        for (var i = 1; i <= 5; i++) {
+            //外层负责打印五行
+            for (var j = 1; j <= 5; j++) {
+                //里层负责一行打印五个⭐
+                str2 = str2 + '⭐';
+            }
+            str2 = str2 + '\n';  //打印完一行后换行打印下一行
+        }
+        console.log(str2);
+
+        //3. 打印n行m列的⭐
+        var n = prompt('请输入要打印几行⭐');
+        var m = prompt('请输入一行要打印几个⭐');
+        var str3 = '';
+        for (var i = 1; i <= n; i++) {
+            //外层负责打印n行
+            for (var j = 1; j <= m; j++) {
+                //里层负责一行打印m个⭐
+                str3 = str3 + '⭐';
+            }
+            str3 = str3 + '\n';  //打印完一行后换行打印下一行
+        }
+        console.log(str3);
+
+        //4. 打印倒三角形的⭐
+        var x = prompt('请输入要几行的倒三角形') //控制倒三角的行数
+        var str4 = '';
+        for (var i = 1; i <= x; i++) {
+            //外层负责打印x行
+            for (var j = i; j <= x; j++) {
+                //里层负责一行打印x-i个⭐
+                //因为外层循环一次 x 就加一, 因此里层每次循环会减一⭐
+                str4 = str4 + '⭐';
+            }
+            str4 = str4 + '\n';  //打印完一行后换行打印下一行
+        }
+        console.log(str4);
+
+        //4. 打印正三角形的⭐
+        var x2 = prompt('请输入要几行的正三角形') //控制倒三角的行数
+        var str5 = '';
+        for (var i = 1; i <= x2; i++) {
+            //外层负责打印 x2 行
+            for (var j = 1; j <= i; j++) {
+                //里层负责一行打印i个⭐
+                //因为外层循环一次 i 就加一, 因此里层每次循环会加一⭐
+                str5 = str5 + '⭐';
+            }
+            str5 = str5 + '\n';  //打印完一行后换行打印下一行
+        }
+        console.log(str5);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

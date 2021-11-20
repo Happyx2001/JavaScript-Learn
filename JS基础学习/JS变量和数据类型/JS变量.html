@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>变量</title>
+    <script>
+        // 变量的使用
+        var age = 18;
+        // var myname = yanxiang;
+        var address = 'shenzhen';
+        // 变量的输出
+        console.log(age);
+        // console.log(myname);
+        console.log(address);
+
+        // 1. 变量使用案例 弹出用户名
+        // 将变量与输入框相结合
+        var myname = prompt('请输入你的名字');
+        alert(myname);
+
+        // 2. 声明多个变量
+        // 变量之间用","号隔开，最后结尾再用;
+        var abc = 10, de = 'shenzhen', gz = 'man';
+
+        // 3. 声明变量的特殊情况
+        // 3.1 只声明不赋值
+        var sex;
+        console.log(sex);   // 结果是undefined 未定义的
+        // 3.2 不声明，不赋值，直接使用:  会报错然后停止运行
+        console.log(tel);
+        // 3.3 不声明，直接赋值使用
+        mass = 10;
+        console.log(mass);  // 可以使用但是会变成全局变量，不推荐
+
+        // 变量命名规范
+        // 1. 大小写要区分好: app和App是两个变量
+        // 2. 不能以数字开头, 18aaa是错误的
+        // 3. 不能是关键字 如:var,for,while,name
+        // 4. 驼峰命名法: 首字母小写, 后面单词的首字母需要大写 如: myFirstName
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

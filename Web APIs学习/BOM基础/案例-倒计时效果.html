@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>倒计时案例</title>
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            var span = document.querySelectorAll('span')
+            // span[0]: 天数的盒子
+            // span[1]: 小时的盒子
+            // span[2]: 分钟的盒子
+            // span[3]: 秒钟的盒子
+            var inpTime = +new Date('2022-1-1 0:0:0');  // 倒计时结束时间
+            countDown();                   // 先调用一次，防止一开始页面空白
+            setInterval(countDown, 1000)   // 开启间隔定时器 1s
+            function countDown() {
+                var nowTime = +new Date(); // 返回当前时间的毫秒数
+                var times = (inpTime - nowTime) / 1000;  // times 剩余时间的总秒数
+                var d = parseInt(times / 60 / 60 / 24);  // 计算天数
+                d = d < 10 ? '0' + d : d;
+                span[0].innerHTML = d;
+                var h = parseInt(times / 60 / 60 % 24);  // 计算小时
+                h = h < 10 ? '0' + h : h;
+                span[1].innerHTML = h;
+                var m = parseInt(times / 60 % 60);  // 计算分数
+                m = m < 10 ? '0' + m : m;
+                span[2].innerHTML = m;
+                var s = parseInt(times % 60);  // 计算秒数
+                s = s < 10 ? '0' + s : s;
+                span[3].innerHTML = s;
+            }
+        });
+    </script>
+    <style>
+        div {
+            overflow: hidden;
+        }
+
+        span {
+            float: left;
+            width: 200px;
+            height: 200px;
+            background-color: black;
+            margin: 0px 10px 5px 0px;
+            color: white;
+            line-height: 200px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 80px;
+        }
+
+        .box {
+            margin: 20px 0px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">倒计时: ( 2022年 1月 1日 0时 0分 0秒 )</div>
+    <div>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div>
+        <span>天</span>
+        <span>小时</span>
+        <span>分钟</span>
+        <span>秒</span>
+    </div>
+</body>
+
+</html>

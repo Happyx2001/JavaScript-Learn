@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组案例</title>
+    <script>
+        // 1. 删除指定数组元素  (数组去重)
+        // 将arr1中的0去掉，并生成一个新数组
+        console.log('1');
+        var arr1 = [2, 0, 6, 1, 77, 0, 52, 0, 25, 7];
+        var new_arr1 = [];  // 设置新数组
+        // 遍历数组
+        for (var i = 0; i < arr1.length; i++) {
+            if (arr1[i] != 0) {
+                new_arr1[new_arr1.length] = arr1[i];
+                // 当数组元素不为0时，将该元素添加到新数组中
+                // 新数组的数组长度就是从0开始，且每一次增加元素后，长度自然会加 1
+            }
+        }
+        console.log(new_arr1);
+
+        // 2. 翻转数组
+        // 将数组中的内容反过来存放
+        console.log('2');
+        var arr2 = ['red', 'blue', 'pink', 'green', 'gray'];
+        var new_arr2 = [];  // 设置新数组
+        // 将旧数组最后一个元素(arr2[length-1])，当成新数组的第0个元素new_arr2[new_arr2.length]
+        // 采取递减的方式 i--
+        for (var i = arr2.length - 1; i >= 0; i--) {
+            new_arr2[new_arr2.length] = arr2[i];
+        }
+        console.log(new_arr2);
+
+        // 3. 数组排序  (冒泡排序)   非常重要！！！
+        // 冒泡排序：一种算法，将一系列数据按照一定的顺序进行排列显示(从大到小或者从小到大)
+        console.log('3');
+        var arr3 = [3, 1, 5, 2, 4, 6];
+        console.log(arr3);
+        // 冒泡排序、从大到小、思路：
+        // 第一步，先将最大的数移到最后面
+        // 第二步，将第二大的数移到倒数第二的位置 ......
+        // 以此类推
+        var temp = '';
+        for (var i = 0; i < arr3.length - 1; i++) {  // 外层循环次数
+            for (var j = 0; j < arr3.length - 1 - i; j++) {  //  里层循环的次数
+                if (arr3[j] > arr3[j + 1]) {  // 如果前一个大于后一个，则交换
+                    temp = arr3[j];
+                    arr3[j] = arr3[j + 1];
+                    arr3[j + 1] = temp;
+                }
+            }
+        }
+        console.log(arr3);
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

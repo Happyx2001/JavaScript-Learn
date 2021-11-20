@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>筋斗云选择样式</title>
+    <script>
+        // 案例要求：
+        // 1. 鼠标经过某个 li ，筋斗云跟着到当前 li 位置
+        // 2. 鼠标离开这个 li ，筋斗云复原到原来的位置
+        // 3. 鼠标点击某个 li ，筋斗云就会留在点击的这个 li 的位置
+
+        // 案例解析：
+        // (1): 利用动画函数做动画的效果
+        // (2): 原先的筋斗云的其实位置是0
+        // (3): 鼠标经过莫个 li ， 把当前 li 的 offsetLeft 位置作为目标值即可
+        // (4): 鼠标离开某个 li ，就把目标值设为0
+        // (5): 点击了某个 li，就把 li 当前的位置存储起来，作为筋斗云的起始位置
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: black;
+        }
+
+        .nav {
+            position: relative;
+            height: 70px;
+            width: 1200px;
+            background-color: white;
+            margin: 100px auto;
+            border: 2px solid #ccc;
+        }
+
+        ul {
+            position: absolute;
+        }
+
+        li {
+            float: left;
+            width: 150px;
+            line-height: 70px;
+            text-align: center;
+            list-style: none;
+        }
+
+        a {
+            display: inline-block;
+            height: 70px;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: red;
+        }
+
+        .cloud {
+            position: absolute;
+            width: 150px;
+            height: 70px;
+            background: url(images/cloud.gif) no-repeat center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <span class="cloud"></span>
+        <ul>
+            <li class="current"><a href="#">动画</a></li>
+            <li><a href="#">电影</a></li>
+            <li><a href="#">国创</a></li>
+            <li><a href="#">舞蹈</a></li>
+            <li><a href="#">音乐</a></li>
+            <li><a href="#">科技</a></li>
+            <li><a href="#">美妆</a></li>
+            <li><a href="#">生活</a></li>
+        </ul>
+    </div>
+    <script>
+        // 1. 获取元素
+        var nav = document.querySelector('.nav');
+        var cloud = document.querySelector('.cloud');
+        var ul = document.querySelector('ul');
+        var lis = document.querySelectorAll('li');
+        // 2. 给 li 绑定事件
+        // current 作为筋斗云的起始位置、记录点击之后的位置
+        var current = 0;
+        for (var i = 0; i < lis.length; i++) {
+            // (1): 鼠标经过把当前 li 位置作为目标值
+            lis[i].addEventListener('mouseenter', function () {
+                animate(cloud, this.offsetLeft);
+            });
+            // (2): 鼠标离开就回到起始位置
+            lis[i].addEventListener('mouseleave', function () {
+                animate(cloud, current);
+            });
+            // (3): 鼠标点击是，就把当前位置当为目标值
+            lis[i].addEventListener('click', function () {
+                current = this.offsetLeft;
+            });
+        }
+
+
+
+        // 缓动动画函数
+        function animate(obj, target, callback) {
+            // 清除计时器 timer
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function () {
+                // 设置步长step = (目标位置 - 对象的当前位置) / 10
+                var step = (target - obj.offsetLeft) / 10;
+                // 为了消除小数，所以用Math取整数，大于0向上取整，小于0向下取整
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                obj.style.left = obj.offsetLeft + step + 'px';
+                // 到达目标位置后，清除计时器 timer
+                if (obj.offsetLeft == target) {
+                    clearInterval(obj.timer);
+                    // 回调函数写到计时器结束里面
+                    if (callback) {   // 判断有没有回调函数
+                        callback();   // 调用函数
+                    }
+                };
+            }, 30)
+        };
+    </script>
+</body>
+
+</html>

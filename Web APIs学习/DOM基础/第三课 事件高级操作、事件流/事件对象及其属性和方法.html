@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件对象</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            margin-top: 20px;
+        }
+
+        .b1 {
+            width: 100px;
+            height: 100px;
+            background-color: blueviolet;
+        }
+
+        .b2 {
+            width: 50px;
+            height: 50px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div>事件对象</div>
+    <div>
+        <p>事件对象的常见属性和方法</p>
+        <a href="https://www.bilibili.com">阻止默认行为</a>
+    </div>
+    <div>
+        1
+        <div class="b1">
+            2
+            <div class="b2">3</div>
+        </div>
+    </div>
+    <script>
+        // 事件对象
+        var divs = document.querySelectorAll('div');
+        divs[0].addEventListener('click', function (event) {
+            console.log(event);  // 返回当前事件的属性
+        })
+        // 1. event 就是一个事件对象, 写到侦听函数的小括号里面, 当成 形参 来看
+        // 2. 事件对象只有有了事件才会存在, 它是系统自动创建的, 不需要我们传递参数
+        // 3. 事件对象: 是我们事件的一系列相关数据的集合 
+        // 比如: 鼠标事件里面就包含了鼠标的相关信息: 鼠标点击的坐标 等等
+        //       键盘事件里面就包含了键盘的相关信息: 判断用户按下的按键 等等
+        // 4. 事件对象可以自己命名 event、e、evt
+        // 5. 兼容性解决：event = event || window.event
+
+
+
+        // 事件对象的常见属性和方法
+        // 1. 返回触发事件的对象(元素) e.target  
+        divs[1].addEventListener('click', function (e) {
+            console.log(e.target);  // 返回 p...p
+            console.log(this);      // 返回 div...div
+
+        })
+        // PS：target 和 this 的区别：
+        // e.target  返回触发事件的对象(元素) 、 this 返回的是绑定事件的对象(元素)
+        // e.target：点击了哪个元素，就返回那个元素
+        // this：哪个元素绑定了这个事件，就返回那个元素
+
+
+        // 2. 返回事件的类型  e.type  比如：click、mouseover
+        divs[1].addEventListener('click', function (e) {
+            console.log(e.type);    // 返回 click
+        })
+
+        // 3. 阻止默认行为(事件) e.preventDefault() 比如：让链接不跳转、让提交按钮不提交
+        // 或者：return false;   这个办法没有兼容性问题，只限于传统的注册方式
+        var a = document.querySelector('a')
+        a.addEventListener('click', function (e) {
+            e.preventDefault();   // 阻止了点击事件的发生
+            console.log('该链接被阻止了');
+        })
+
+        // 4. 阻止事件冒泡   (重点！！！)
+        // e.stopPropagation()     这是个方法 必须加()
+        divs[2].addEventListener('click', function (e) {
+            alert('1');
+        })
+        divs[3].addEventListener('click', function (e) {
+            alert('2');
+        })
+        divs[4].addEventListener('click', function (e) {
+            e.stopPropagation();
+            alert('3');
+        })
+    </script>
+</body>
+
+</html>

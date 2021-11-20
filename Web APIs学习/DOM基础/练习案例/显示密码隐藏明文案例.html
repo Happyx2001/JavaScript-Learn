@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>显示密码隐藏明文案例</title>
+    <!-- 初步综合 html 和 css 和 JavaScript -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .box {
+            position: relative;
+            width: 500px;
+            border-bottom: 1px solid #ccc;
+            margin: 100px auto;
+        }
+
+        .box input {
+            width: 400px;
+            height: 30px;
+            border: 0;
+            /* 去掉表单的显示边框 */
+            outline: none;
+        }
+
+        .box #btn {
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+            height: 30px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <label for="">
+            <button id="btn">显示密文</button>
+        </label>
+        <input type="password" name="" id="password1">
+    </div>
+    <script>   // 开始编写 JS
+        // 获取元素
+        var btn = document.getElementById('btn');
+        var password1 = document.getElementById('password1');
+        // 添加个 flag 判断当前表单是 text 还是 password
+        // 初始为 password 时, flag = true
+        var flag = true;
+        btn.onclick = function () {
+            if (flag) {  // 如果 flag = true 
+                password1.type = 'text';      // 修改表单的属性
+                btn.innerHTML = '隐藏密文';    // 修改 btn 的元素内容
+                flag = false;
+            } else {  // 否则
+                password1.type = 'password';
+                btn.innerHTML = '显示密文';
+                flag = true;
+            }
+        }
+    </script>
+</body>
+
+</html>

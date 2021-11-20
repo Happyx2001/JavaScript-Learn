@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>筛选数组, 数组去重</title>
+    <script>
+        // 删除数组里面大于2000的元素. 筛选数组
+        var arr = [1500, 2200, 1300, 2300, 1800, 3100, 1670];
+        var new_arr = [];
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] < 2000) {   // 如果小于2000 , 就将这个元素push入新数组中 
+                new_arr.push(arr[i]);
+            }
+        }
+        console.log(new_arr);
+
+        
+        console.log('');
+        // 数组去重:
+        // 遍历旧数组, 然后用旧数组元素去查询新数组. 如果该元素在新数组中没有出现过, 则添加
+        var oldArr = ['c', 'a', 'z', 'a', 'x', 'a', 'x', 'c', 'b'];
+        function unique(arr) {
+            var newArr = [];
+            for (var i = 0; i < arr.length; i++) {  // 遍历旧数组
+                newArr.indexOf(arr[i]);  // 查找元素
+                if (newArr.indexOf(arr[i]) == -1) {   // 如果这个元素在新数组中没有, 则push入新数组
+                    newArr.push(arr[i])
+                }
+            }
+            return newArr;  // 最后返回新数组
+        }
+        console.log(unique(oldArr));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

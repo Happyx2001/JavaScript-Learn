@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS同步和异步</title>
+    <script>
+        // JS的一大特点是单线程，这也就是说JS在同一时间内只能做一件事情
+        // 如果JS的执行时间过长，就会造成页面的渲染不连贯，导致页面渲染加载堵塞的感觉
+
+        // 为了解决这个问题, H5标准允许JS运行多个线程, 于是JS的同步 和 异步出现了
+
+        // 同步: 前一个任务结束后再执行下一个任务, 程序的执行顺序与任务的排列顺序是一致的, 同步的
+        // 异步: 同时做不同的事情
+
+        // 1. 同步任务: 同步任务在主线程上执行, 形成一个执行栈
+        // 2. 异步任务: JS的异步任务是通过回调函数实现的, 一般而言有三种类型:
+        // (1): 普通事件: click, resize 等等
+        // (2): 资源加载: load, error 等等
+        // (3): 定时器: setInterval, setTimeout 等等
+
+
+        // JS的执行机制:
+        // (1): 先执行执行栈中的同步任务
+        // (2): 异步任务(回调函数)放入任务队列中
+        // (3): 一旦 执行栈 中的所有同步任务执行完毕, 系统就会按次序读取 任务队列 中的异步任务, 
+        //      于是被读取的异步任务结束等待状态, 进入执行栈, 开始执行 
+        // (4): 事件循环(event loop): 会一直在同步任务和异步任务中循环, 检查是否有未执行的任务
+
+        // 简单案例: 
+        console.log(1);  // (1)
+        document.onclick = function () {   // (2)
+            console.log(3);
+        };
+        setTimeout(function () {      // (3)
+            console.log('3s 后打印');
+        }, 3000);
+        console.log(2);     // (4)
+        // 1. 这其中 (1)和(4) 是同步任务, 会最先在任务栈中执行
+        // 2. (2)的 onclick 和(3)的 setTimeout 都是异步任务, 他们都是回调函数
+        // 3. (2)和(3)先放入 任务队列(消息队列)中
+        //    等待主线程执行栈中的同步任务(1), (4)执行完毕后, 再执行 
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>if语句</title>
+    <script>
+        // if (表达式) { 代码1; }  else { 代码2; };
+        // 若表达式为真，则执行代码1。若表达式为假，则执行代码2
+        if (3 > 5) {
+            console.log('嘻嘻嘻嘻');
+        }
+        // 不执行
+        if (3 < 5) {
+            console.log('哈哈哈哈哈哈哈哈哈哈');
+        }
+        // 执行
+
+
+        // if、else if多分支语句
+        // if (表达式)1 { 代码1; }  
+        // else if (表达式2) { 代码2; }  
+        // else { 代码3; } 
+        // 若表达式1为真，则执行代码1。
+        // 若表达式1为假，表达式2为真，则执行代码2
+        // 若表达式1、2都为假，则执行代码3
+
+
+        // 练习1
+        var age = prompt('请输入你的年龄');
+        if (age >= 18) {
+            alert('恭喜你，你可以访问这个网站');
+        } else {
+            alert('未成年不可进入');
+        }
+
+        // 练习2 判断闰年
+        // 闰年：年分为100的整数时，能被400整除就是闰年
+        //      年份不是100的整数时，能被4整除就是闰年
+        var year = prompt('请输入年份');
+        // 写法一 (if + else 多分支)
+        if (year % 100 == 0) {
+            if (year % 400 == 0) {
+                alert(year + '年是闰年');
+            } else {
+                alert(year + '年是平年');
+            }
+        }
+        else if (yaer % 4 == 0) {
+            alert(year + '年是闰年');
+        }
+        else {
+            alert(year + '年是平年');
+        }
+        // 写法二 (if + 逻辑运算符)
+        if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+            alert(year + '年是闰年')
+        } else {
+            alert(year + '年是平年')
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>内置对象</title>
+    <script>
+        // JS里面对象分为三种：自定义对象、内置对象、浏览器对象
+        // 前面两种是JS的基础内容，属于ECMAScript； 第三个浏览器对象是JS独有的，JS API会讲解
+        // 内置对象：JS自带的一些对象，提供了一些常用或者是最基本而必要的功能(属性和方法)
+        // 内置对象的作用： 最大的作用是帮助开发者开发
+        // eg ：Math、Date、Array、String、......
+
+        // 一、 Math 数学对象:  "不是一个构造函数", 所以不需要new来调用, 而是直接使用里面的属性和方法即可
+        console.log(Math.PI); // 一个属性: 圆周率
+        console.log(Math.max(1, 33, 1234)); // 一个方法: 求最大值
+        console.log(Math.max(1, 33, "1234")); // NaN
+        console.log(Math.max()); // -infinity
+        console.log(Math.abs(-123)); // 取绝对值
+        // 1. Math取整: 1. Math.floor()  1. Math.ceil()  3. Math.round()
+        console.log("");
+        console.log(Math.floor(1.123)); // floor(): 向下取整, 往最小取值
+        console.log(Math.ceil(1.3)); // ceil(): 向上取整, 往最大取值
+        console.log(Math.round(1.52)); // round(): 四舍五入
+        console.log(Math.round(1.44));
+        console.log(Math.round(-1.5)); // 结果为 -1
+        // 2. Math随机数: Math.random() 返回一个随机的小数, 0 =< x < 1
+        console.log("");
+        console.log(Math.random());
+        // 2.2 两个数之间的随机整数, 并且包含这两个数
+        function getRandom(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        console.log(getRandom(1, 99));
+
+        // 二、 Date 日期对象:  "是一个构造函数", 必须使用 new 来调用创建我们的日期对象
+        // ps: 计算机起始时间是: 1970年 1月 1日
+        console.log("");
+        var date1 = new Date(); //  如果没有参数, 就会返回系统的当前时间
+        console.log(date1);
+        // 参数常用的写法:   数字型: 2020, 2, 20  或者是  字符串型  '2020-2-20 18:10:8'
+        var date2 = new Date(2020, 2, 20);
+        console.log(date2);
+        var date3 = new Date("2020-2-20");
+        console.log(date3);
+        // 1. 格式化日期:  年 月 日 时 分 秒
+        console.log(date1.getFullYear()); // getFullYear() 获取年
+        console.log(date1.getMonth() + 1); // getMonth() 获取月
+        // ps: 由于Date计算月份是按照 0~11 来计算的, 因此月份会小一个月, 要记得加1
+        console.log(date1.getDate()); // getDate() 获取日
+        console.log(date1.getDay()); // getDay() 获取周几   ps: 周日返回为 0
+        console.log(date1.getHours()); // getHours() 获取秒
+        console.log(date1.getMinutes()); // getMinutes() 获取分
+        console.log(date1.getSeconds()); // getSeconds()获取秒
+        // 2. 获取Date的总毫秒数:  (距离 1970年 1月 1日  过了多少毫秒数)
+        console.log("");
+        console.log(date1.valueOf()); // valueOf()
+        console.log(date1.getTime()); // getTime()
+        // 2.2 简单的获取Date的总毫秒数写法:
+        var date4 = +new Date();
+        console.log(date4);
+        // 2.3  H5新增的方法:
+        console.log(Date.now());
+        // ps: 因为程序需要运行时间, 所以获取毫秒数得到的数值不一定都相同
+
+        // 三、 Array 数组对象
+        // 1. 利用 new 创建数组
+        console.log("");
+        var arr1 = new Array(); // 创建了一个空数组
+        var arr2 = new Array(3); // 创建了一个长度为 2 的空数组, 里面的元素为 空
+        var arr3 = new Array(2, 3); // 等同于[2, 3]  创建了一个数组里面元素为[2, 3]
+        console.log(arr2, arr3);
+        // 2. 检测是否为数组
+        // (1): instanceof 运算符: 可以用来检查是否为数组, 返回的是布尔值 true, false
+        var arr4 = [];
+        var arr5 = {};
+        console.log(arr4 instanceof Array);
+        console.log(arr5 instanceof Array);
+        // H5 新增的方法 (2): Array.isArray(参数): 返回的是布尔值 true, false
+        console.log(Array.isArray(arr4));
+        console.log(Array.isArray(arr5));
+        //3. 添加, 删除数组元素方法
+        console.log("");
+        // 3.1 push() 在数组的末尾 添加一个或者多个数组元素
+        var arr6 = [1, 2, "你好呀"];
+        console.log(arr6.push(4, 5, 6)); // push结束之后, 返回结果是数组的长度
+        console.log(arr6);
+        // 3.2 unshitt() 在数组的开头 添加一个或者多个数组元素
+        var arr7 = [3, 4, "你好呀"];
+        console.log(arr7.unshift(1, 2)); // unshift结束之后, 返回结果是数组的长度
+        console.log(arr7);
+        // 3.3 pop()  删除数组的最后一个元素, 一次只能删除一个
+        console.log(arr7.pop()); // pop完毕之后, 返回的是删除的元素
+        console.log(arr7);
+        // 3.4 shift() 删除数组的第一个元素, 一次只能删除一个
+        console.log(arr7.shift()); // shift完毕之后, 返回的是删除的元素
+        console.log(arr7);
+        // 4. 翻转数组 reverse()
+        console.log("");
+        var arr8 = ["一", "二", "三", "四", "五", "六"];
+        arr8.reverse();
+        console.log(arr8);
+        // 5. 数组排序(冒泡排序) sort()
+        var arr9 = [3, 1, 4, 2, 6, 5];
+        arr9.sort(function (a, b) {
+            // 这是个比较器
+            return a - b; // 按照升序的顺序排列 a- b
+        });
+        console.log(arr9);
+        arr9.sort(function (a, b) {
+            return b - a; // 按照降序的顺序排列 b -a
+        });
+        console.log(arr9);
+        // 6. 数组的索引方法
+        console.log("");
+        // 6.1 indexOf() 查找给定元素的第一个索引号.(从前往后查找)
+        // 如果存在,则返回索引号; 如果不存在, 则返回- 1
+        var abc = ["red", "black", "pink", "white", "red", "green"];
+        console.log(abc.indexOf("black"));
+        console.log(abc.indexOf("abc"));
+        // 6.2 lastIndexOf() 查找给定元素的最后一个索引号.(从后往前查找)
+        // 如果存在,则返回索引号; 如果不存在, 则返回- 1
+        console.log(abc.lastIndexOf("red"));
+        console.log(abc.lastIndexOf("abc"));
+        // 7. 数组转换为字符串
+        console.log("");
+        // 7.1 toString()
+        // 7.2 join(分隔符)     (中间的分隔符, 可以显示在数组的元素之间)
+        var astr = ["green", "blue", "black"];
+        console.log(astr.join());
+        console.log(astr.join("-"));
+        console.log(astr.join("$"));
+        // 8.  其他方法
+        console.log("");
+        // 8.1  concat()   连接两个或者多个数组
+        // 使用方法：数组1.concat(数组2); 将 数组2 接到 数组1 的后面
+        var con1 = [1, 2, 3, 4];
+        var con2 = [2, 4, 6];
+        var con3 = con1.concat(con2); // 将 数组con2 连接到 数组con1 后面
+        console.log(con3);
+        // 8.2  slice()   数组截取slice(开始元素索引号[], 结束元素索引号[])
+        var bate1 = ["red", "black", "pink", "white", "gray", "green"];
+        var bate2 = bate1.slice(2, 5); // 将数组 bate1 中，元素索引号[2]~[5]之间的元素提取出来
+        console.log(bate2); // 返回的是数组bate1， 被截取的元素
+        console.log(bate1); // slice 不会对原来的数组产生改变
+        // 8.3 splice()   数组删除splice(开始元素索引号[], 要删除个数)
+        var del = bate1.splice(2, 3); // 将数组 bate1 中，元素索引号为[2](包括[2])后的元素删除 3 个
+        console.log(del); // 返回的是数组bate1， 删除的元素
+        console.log(bate1); // splice 会对原来的数组产生改变
+
+        console.log("");
+        // 四、String字符串对象：
+        // 只有“对象”和“复杂数据类型”才有“属性”和“方法”；
+        // 因此通过“基本包装类型”，可以把“简单数据类型”包装成为“复杂数据类型”
+        var str1 = "pink"; //  'pink' 原本是简单数据类型(字符串)
+        console.log(str1.length); //  返回为 4
+        //  var str1 = 'pink';  相当于执行了👇 三步
+        // var temp = new String('pink');   1. 把“简单数据类型”包装成为“复杂数据类型”
+        // str1 = temp;                     2. 把临时变量的值给 str1
+        // temp = null;                     3. 销毁临时变量
+
+        // 字符串 具有不可变性，看上去内容变了，但其实是地址变了，内存中新开辟了一个内存空间
+
+        // 1. 根据位置返回字符
+        // 1.1 charAt(index) 根据位置返回字符
+        var str2 = "pink";
+        console.log(str2.charAt(3));
+        // 遍历所有字符
+        for (var i = 0; i < str2.length; i++) {
+            console.log(str2.charAt(i));
+        }
+        // 1.2 charCodeAt(index) 返回相应索引号的字符ASCII值   目的：判断用户按下了哪个键
+        console.log(str2.charCodeAt(0)); // 返回'p' 的ASCII码
+        // 1.3 (H5新增)  变量名[index]   用法与 charAt(index) 完全相同，但是兼容性不同
+        console.log(str2[2]);
+        // 1.4 字符查找 indexOf() 和 lastIndexOf()
+
+        // 2. 字符串操作方法
+        // 2.1 concat('字符串1','字符串2',...) 连接字符串
+        console.log("");
+        var str3 = "red";
+        var str4 = "blue";
+        console.log(str3.concat(str4));
+        // 2.2 substr('截取的起始位置','截取几个字符');
+        var str5 = "天行健，君子以自强不息";
+        console.log(str5.substr(2, 9));
+        // 2.3 slice(start, end) 和 substring(start, end) 用法大致相同
+
+        // 3. 替换字符  replace('被替换的字符','替换为的字符')
+        var str6 = "abcdeafga";
+        console.log(str6.replace("a", "h")); // 它只会替换第一个字符
+        //  可以结合循环替换字符
+        while (str6.indexOf("a") !== -1) {
+            str6 = str6.replace("a", "h");
+        }
+        console.log(str6);
+        // 4. 字符转换为数组 split('分隔符')     用法与 join 数组转换为字符串差不多
+        var str_arr1 = "red,yellow,blue";
+        console.log(str_arr1.split(",")); // 以 , 逗号为分隔，转换为数组
+        var str_arr1 = "red&yellow&blue";
+        console.log(str_arr1.split("&")); // 以 & 逗号为分隔，转换为数组
+        // 5.1 字符转换为大写 toUpperCase()
+        var str_up = "abcdefg";
+        console.log(str_up.toUpperCase());
+        // 5.1 字符转换为小写 toLowerCase()
+        var str_up = "ABCDEFG";
+        console.log(str_up.toLowerCase());
+    </script>
+</head>
+
+<body></body>
+
+</html>

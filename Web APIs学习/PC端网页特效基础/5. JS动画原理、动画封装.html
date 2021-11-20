@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS动画原理</title>
+    <script>
+        // 1. JS实现动画的核心原理：通过间隔定时器 setInterval() 不断移动盒子的位置
+        // step：
+        // (1): 获取盒子的当前位置
+        // (2): 给盒子在当前位置加上 x 个移动距离
+        // (3): 利用间隔定时器不断重复这个操作
+        // (4): 加一个结束定时器的条件
+        // (5): 注意此元素需要添加定位，才能使用 element.style.left
+
+        // 2. 动画函数的简单封装: 定义一个动画函数, 哪个对象要运行动画就调用这个 定义的动画函数
+
+        // 3.
+        // 如果在动画函数里面每次都声明var一个计时器setInterval, 那么每次都会占用一个内存
+        // 这样对于程序效率来说不高
+        // 因此: 可以 "给不同的对象添加不同的定时器" 
+        // 原理: JS调用任何东西都是当成一个"对象"调用的, 可以直接给调用的"对象"添加属性和方法
+        // 优点: 降低内存消耗, 提升程序效率
+    </script>
+    <style>
+        div {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>JS动画原理</div>
+    <div>简单封装函数1</div>
+    <div>简单封装函数2</div>
+    <div>给不同的对象添加不同的定时器</div>
+    <div>给不同的对象添加不同的定时器</div>
+    <script>
+        // 1.
+        // (1): 获取盒子的当前位置
+        var div = document.querySelectorAll('div');
+        // (3): 利用间隔定时器不断重复这个操作
+        var timer = setInterval(function () {
+            // (2): 给盒子在当前位置加上 x 个移动距离
+            div[0].style.left = div[0].offsetLeft + 1 + 'px';
+            // (4): 加一个结束定时器的条件 (停止动画)
+            if (div[0].offsetLeft >= 400) {
+                clearInterval(timer)
+            }
+        }, 30);
+
+
+        // 2.
+        // 简单封装动画函数: 
+        // 定义函数
+        // obj: 调用函数的对象    
+        // target: 设置动画结束的目标位置   
+        //  speed: 间隔定时器的间隔(动画速度, 数值越大速度越慢)  
+        function animate1(obj, target, speed) {
+            clearInterval(timer);
+            // 先清除原先的计时器, 防止多次调用动画函数时, 计时器的叠加
+            var timer = setInterval(function () {
+                obj.style.left = obj.offsetLeft + 1 + 'px';
+                if (obj.offsetLeft >= target) {
+                    clearInterval(timer);
+                }
+            }, speed)
+        };
+        // 调用函数
+        animate1(div[1], 600, 10);
+        animate1(div[2], 800, 15);
+
+
+        // 3.
+        // 如果在动画函数里面每次都声明var一个计时器setInterval, 那么每次都会占用一个内存
+        // 这样对于程序效率来说不高
+        // 因此: 可以 "给不同的对象添加不同的定时器"  ↓
+        // 原理: JS调用任何东西都是当成一个"对象"调用的, 可以直接给调用的"对象"添加属性和方法
+        // 优点: 降低内存消耗, 提升程序效率
+        function animate2(obj, target, speed) {
+            clearInterval(timer);
+            // 直接将计时器添加到 obj 里面去
+            obj.timer = setInterval(function () {
+                obj.style.left = obj.offsetLeft + 1 + 'px';
+                if (obj.offsetLeft >= target) {
+                    clearInterval(obj.timer);
+                }
+            }, speed)
+        };
+        animate2(div[3], 600, 10);
+        animate2(div[4], 800, 15);
+    </script>
+</body>
+
+</html>

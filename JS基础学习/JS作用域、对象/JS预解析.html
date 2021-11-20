@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 预解析 </title>
+    <script>
+        // 1.
+        console.log(num);
+
+
+        // 2.
+        console.log(num); // undefined    注意点1
+        var num = 10;
+        // 相当于执行了    
+        // var num;    (预解析的变量提升)
+        // console.log(num);  // 因此num此时没有赋值, 会输出undefined
+        // num = 10;
+
+
+        // 3.
+        fn();
+        function fn() {
+            cosnole.log(123);
+        }
+        //  相当于执行了    (预解析的函数提升)
+        // function fn() {
+        //     cosnole.log(123);
+        // }
+        // fn();
+
+
+        // 4. 
+        fun();  // 会报错   注意点2
+        var fun = function () {
+            console.log(456);
+        }
+        //相当于执行了
+        // var fun;
+        // fun();   // 没有函数可以调用
+        // fun = function () {
+        //     cosnole.log(456);
+        // }
+        // 故: 函数表达式调用必须写在函数表达式的下面
+
+
+        // 1. 我们JS引擎运行JS代码分为两步： 预解析  、  代码执行
+        // (1) 预解析：JS引擎会把JS里面的所有 var 还有 function 提升到当前作用域的最前面
+        // (2) 代码执行: 按照代码的书写顺序从上往下执行
+        // 2. 预解析又分为: 变量预解析(变量提升) 和 函数预解析(函数提升)
+        // (1) 变量提升: 把所有的变量声明提升到当前的作用域最前面, 不提升赋值操作
+        // (2) 函数提升: 把所有的函数声明提升到当前的作用域最前面, 不调用函数
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

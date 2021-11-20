@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关键字</title>
+    <!-- continue和break -->
+    <script>
+        // continue 关键字
+        // 退出本次循环(当前次的循环)，继续执行剩余次数的循环
+
+        // eg1.
+        for (var i = 1; i <= 5; i++) {
+            if (i == 3) {
+                continue;  //  只要遇见 continue 就退出本次循环，直接跳到下一次循环
+            }
+            // 当i=3时，continue了，因此i=3不会被打印出来
+            console.log('这是' + i);
+        }
+
+        // eg2. 求1~100之间，除了能被7整除的数之外的整数之和
+        var sum = 0;
+        for (var i = 1; i <= 100; i++) {
+            if (i % 7 == 0) {
+                continue;
+            }
+            sum += i;
+        }
+        console.log('1~100之间，除了能被7整除的数之外的整数之和为' + sum);
+
+        // break 关键字
+        // 立即退出当前的整个循环
+        for (var i = 1; i <= 5; i++) {
+            if (i == 3) {
+                break;  //  只要遇见 break 就退出整个循环，后面的循环不再执行
+            }
+            // 当i=3时，break了，因此i=3以及i=3后面的循环不会被打印出来
+            console.log('这是' + i);
+        }
+
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

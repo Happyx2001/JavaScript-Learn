@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件委托</title>
+    <script>
+        // 事件委托的核心原理
+        // 不给每个子节点单独设置事件监听器，而是在其父节点上设置事件监听器，然后利用冒泡原理影响设置每个子节点
+        // 案例：给 ul 注册点击事件，然后利用事件对象的 target 来找到当前点击的 li，因为点击 li，事件会冒泡到 ul 上
+
+
+        // 事件委托的作用
+        // 只操作一次 DOM ，但是提高了程序的性能
+    </script>
+    <style>
+        li {
+            margin: 20px auto;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <script>
+        var uls = document.querySelector('ul');
+        uls.addEventListener('click', function (e) {
+            alert('啊啊啊，我被点击了~~');
+            // e.target 可以得到我们点击的对象
+            e.target.style.backgroundColor = 'red';
+            // 设置我们点击的 li 的背景颜色会变成 red 
+        })
+    </script>
+</body>
+
+</html>

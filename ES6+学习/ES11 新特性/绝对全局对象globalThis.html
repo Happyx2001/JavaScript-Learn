@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绝对全局对象 globalThis</title>
+    <script>
+        // 绝对全局对象 globeThis
+        // 始终指向全局对象, 无论是什么指向环境 (浏览器, node.js, ...)
+
+        // 在浏览器对象下, globalThis 指向 window
+        console.log(globalThis);
+
+        // 在node.js对象下, globalThis 指向 global
+        // console.log(globalThis); 
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

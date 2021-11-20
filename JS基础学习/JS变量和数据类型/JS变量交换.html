@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS变量练习</title>
+    <!-- 交换两个变量的值 -->
+    <script>
+        // 思路
+        // 1. 创建一个临时变量temp
+        // 2. 将变量var1 的值给 临时变量temp
+        // 3. 将变量var2 的值给 变量var1
+        // 4. 将临时变量temp 的值给 变量var2
+
+        // ps. 交换一般是右边给左边
+        var temp;  // 声明一个临时变量为空
+        var eg1 = '我是变量1'
+        var eg2 = '我是变量2'
+        temp = eg1;     // 右边给左边
+        eg1 = eg2;
+        eg2 = temp;
+        console.log(eg1)
+        console.log(eg2)
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

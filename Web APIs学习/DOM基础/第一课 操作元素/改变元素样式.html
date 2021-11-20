@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>改变元素的样式</title>
+    <script>
+        // 1. element.style   行内样式操作
+        // 样式比较少 或者 功能简单的情况下使用
+        // 通过 JS 修改 style 样式操作，产生的是行内样式，权重比较高
+
+        // 2. element.className   类名样式操作
+        // 样式较多 或者 功能复杂的情况下使用
+        // 直接更改了元素的类名，类名对应 CSS 中写好的样式，一行代码更改许多样式
+
+    </script>
+    <style>
+        #box1 {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+
+        #box2 {
+            position: relative;
+            width: 400px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            font-size: 12px;
+            text-align: center;
+            color: red;
+            background-color: transparent;
+        }
+
+        .f1 {
+            width: 200px;
+            height: 200px;
+            margin: 10px 0;
+            background-color: red;
+        }
+
+        .f2 {
+            width: 400px;
+            height: 200px;
+            margin: 10px auto;
+            background-color: yellow;
+        }
+
+        img {
+            width: 100%;
+            /* 让图片与文字对齐， 去掉图片下的空隙 */
+            vertical-align: middle;
+        }
+
+        #close-btn {
+            position: absolute;
+            top: -1px;
+            left: -16px;
+            width: 14px;
+            height: 14px;
+            border: 1px solid #ccc;
+            font-family: Arial, Helvetica, sans-serif;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <p>点击下方的红方块，可使得其样式改变</p>
+    <div class="f1">通过 .className 改变样式</div>
+
+    <p>点击下方的红方块，可使得其样式改变</p>
+    <div id="box1">通过 .style 改变样式</div>
+
+    <div id="box2">
+        关闭这个图片
+        <img src="../images/wall.png" alt="">
+        <i id="close-btn">x</i>
+    </div>
+    <script>
+
+        // 使用 element.style 修改元素样式
+        // 获取元素
+        var box1 = document.getElementById('box1');
+        // 注册事件  处理程序
+        var flag1 = true
+        box1.onclick = function () {
+            // .style 后面的属性  采用驼峰命名法
+            if (flag1) {
+                this.style.backgroundColor = 'yellow';
+                this.style.width = '400px';
+                flag1 = false;
+            } else {
+                this.style.backgroundColor = 'red';
+                this.style.width = '200px';
+                flag1 = true;
+            }
+
+        }
+
+        // 使用 element.className 修改元素样式
+        // 获取元素
+        var change = document.querySelector('div');
+        var flag2 = true;
+        change.onclick = function () {
+            // 通过修改元素的 className 类名，修改整个样式
+            if (flag2) {
+                this.className = 'f2';
+                flag2 = false;
+            } else {
+                this.className = 'f1';
+                flag2 = true;
+            }
+        }
+
+
+
+        // 关闭图片案例  ( 使用 .style 修改样式)
+        // 获取元素
+        var btn = document.getElementById('close-btn');
+        var box2 = document.getElementById('box2');
+        // 注册事件 处理程序
+        btn.onclick = function () {
+            // 通过修改 box 的 display 样式，使得整个 box 消失
+            box2.style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

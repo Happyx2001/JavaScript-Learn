@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象展开-rest参数和扩展运算符</title>
+    <script>
+        // rest参数 和 spread 扩展运算符在 ES6 中已经引入, 但是在 ES6 中它们只针对数组
+        // 在 ES9 中为 "对象" 提供了像数组一样的 rest参数 和 扩展运算符
+
+        // rest 参数与对象结合使用
+        function connect({ host, port, ...user }) {
+            // 意思是传过来的对象的前两个键值对 存在对应的 host 和 port 里面,
+            // 其他的键值对, 则全部存到 user 里面 (以对象的形式存放)
+            console.log(host);
+            console.log(port);
+            console.log(user);
+        }
+
+        connect({ // 调用函数时, 里面的实参是一个对象
+            host: '127.0.0.1',
+            port: 3306,
+            username: '张三',
+            password: 'root',
+            type: 'root'
+        });
+
+        // 扩展运算符: 可用于对象的合并
+        // eg:
+        const nameOne = {
+            one: '张三'
+        }
+        const nameTwo = {
+            two: '李四'
+        }
+        const nameThree = {
+            three: '王五'
+        }
+        const nameFour = {
+            four: '赵六'
+        }
+        const team = { ...nameOne, ...nameTwo, ...nameThree, ...nameFour };
+        console.log(team);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

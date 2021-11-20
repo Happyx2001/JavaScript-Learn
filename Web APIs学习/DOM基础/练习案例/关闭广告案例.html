@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关闭广告</title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        #bbox {
+            position: relative;
+            height: 50px;
+            background-color: pink;
+            color: white;
+            line-height: 50px;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        #close-btn {
+            position: absolute;
+            top: 13px;
+            right: 20px;
+            width: 20px;
+            height: 20px;
+            padding-bottom: 3px;
+            line-height: 20px;
+            border: 1px solid #ccc;
+            background: rgba(0, 0, 0, 0.3);
+            font-family: Arial, Helvetica, sans-serif;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="bbox">
+        假装这是广告，点击X可将其关闭
+        <i id="close-btn">x</i>
+    </div>
+    <script>
+        var btn = document.getElementById('close-btn');
+        var bbox = document.getElementById('bbox');
+        btn.onclick = function () {
+            bbox.style.display = 'none';
+        }
+
+    </script>
+</body>
+
+</html>

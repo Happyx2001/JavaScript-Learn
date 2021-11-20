@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>猜数字游戏</title>
+    <script>
+        // 结合 Math内置对象
+        function getRandom(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        var ran = getRandom(1, 100);
+        console.log(ran);
+        while (true) {
+            var num = Number(prompt("请输入一个1~100之间的数"));
+            if (num == ran) {
+                alert("恭喜你, 猜对了!\n数字是:" + ran);
+                break;
+            } else if (num > ran) {
+                alert("猜的数字大了, 继续猜!");
+            } else {
+                alert("猜的数字小了, 继续猜!");
+            }
+        }
+    </script>
+</head>
+
+<body></body>
+
+</html>

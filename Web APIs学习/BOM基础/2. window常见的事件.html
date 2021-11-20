@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window常见的事件</title>
+    <script>
+        // 1.1 页面加载事件:   onload
+        // window.onload(传统方法) 或者 window.addEventListener('load', function () { })   (方法监听方法)
+        // (1): 学 BOM 之前 JS 代码只能写到页面元素的下面, 但是这个 BOM 事件可以让 JS 代码写到任何位置
+        // (2): load 等页面内容全部加载完毕, 包括页面DOM元素, 图片, flash, css 等等, 才执行
+        // eg:
+        // 传统方法
+        window.onload = function () {
+            var btn = document.querySelectorAll('button');
+            btn[0].addEventListener('click', function () {
+                alert('我被点了')
+            })
+        };
+        // 方法监听器方法
+        window.addEventListener('load', function () {
+            var btn = document.querySelectorAll('button');
+            btn[0].addEventListener('click', function () {
+                alert('我又被点了')
+            })
+        });
+
+        // 1.2 窗口加载事件  DOMContentLoaded   (ie9 以上才支持)
+        // document.addEventListener('DOMContentLoaded', function() {})
+        // (1): 仅当DOM加载完成时立马执行, 不包括样式表, 图片, flash 等等
+        // (2): 加载速度比 load 快
+        document.addEventListener('DOMContentLoaded', function () {
+            var btn = document.querySelectorAll('button');
+            btn[0].addEventListener('click', function () {
+                alert('我被点了 (DOMContentLoaded)')
+            })
+        });
+
+
+        // 2. 调整窗口大小事件  onresize
+        // window.addEventListener('resize', function () { })
+        // 只要窗口大小发生像素变化, 就会触发这个事件
+        window.addEventListener('load', function () {
+            var div = document.querySelector('div');
+            window.addEventListener('resize', function () {
+                console.log(window.innerWidth);      // innerWidth 获取当前浏览器窗口的宽度
+                console.log('浏览器窗口大小变换了');   // 当浏览器窗口大小发生变化时, 打印这段话
+                if (window.innerWidth >= 800) {
+                    div.style.width = '400px';
+                } else {
+                    div.style.width = '200px';
+                }
+            })
+        }); 
+    </script>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            margin: 20px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <button>点我</button>
+    <br>
+    <div>我会变换大小</div>
+    <button>延迟 2s 出现</button>
+    <button>延迟 4s 出现</button>
+</body>
+
+</html>

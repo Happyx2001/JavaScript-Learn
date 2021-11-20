@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面换肤</title>
+    <style>
+        body   {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: url() no-repeat center top;
+            /* 背景填充页面 */
+            background-size: cover;
+        }
+
+        .pifu {
+            overflow: hidden;
+            width: 1000px;
+            height: 60px;
+            margin: 10px auto;
+            padding: 0;
+            border: 1px solid #ccc;
+        }
+
+        .pifu li {
+            float: left;
+            list-style: none;
+        }
+
+        .pifu li img {
+            width: 200px;
+            height: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <ul class="pifu">
+            <li>
+                <img src="../images/wall1.png" alt="">
+            </li>
+            <li>
+                <img src="../images/wall2.png" alt="">
+            </li>
+            <li>
+                <img src="../images/wall3.png" alt="">
+            </li>
+            <li>
+                <img src="../images/wall4.png" alt="">
+            </li>
+            <li>
+                <img src="../images/wall5.png" alt="">
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        // 获取元素
+        // 获取 .pifu 里面的 img
+        var imgs = document.querySelector('.pifu').querySelectorAll('img');
+        var body = document.body;  // 获取 body 元素
+        // 利用循环注册事件
+        for (var i = 0; i < imgs.length; i++) {
+            imgs[i].onclick = function () {  // 点击了图片之后，页面背景变更
+                body.style.backgroundImage = 'url(' + this.src + ')';  // 背景变更为点击的图片
+                // this.src 就是我们点击图片的路径
+            }
+        }
+    </script>
+</body>
+
+</html>

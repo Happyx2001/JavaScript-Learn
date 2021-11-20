@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页产品放大镜效果</title>
+    <style>
+        .chanpin {
+            position: relative;
+            margin: 20px;
+            width: 400px;
+            border: 1px solid #ccc;
+        }
+
+        .img-s {
+            width: 100%;
+            vertical-align: middle;
+        }
+
+        .mask {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 180px;
+            height: 180px;
+            background-color: yellow;
+            border: 1px solid #ccc;
+            opacity: .5;
+
+        }
+
+        .big {
+            display: none;
+            position: absolute;
+            top: 0;
+            right: -740px;
+            width: 720px;
+            height: 720px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            z-index: 999;
+        }
+
+        .img-b {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1600px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 搭建简单的产品页面结构 -->
+    <div class="chanpin">
+        <img src="images/img1.png" alt="chanpin" class="img-s">
+        <div class="mask"></div>
+        <div class="big">
+            <img src="images/img1.png" alt="chanpin" class="img-b">
+        </div>
+    </div>
+    <!-- JS部分 -->
+    <script>
+        // 1. 获取元素
+        var chanpin = document.querySelector('.chanpin');
+        var mask = document.querySelector('.mask');
+        var big = document.querySelector('.big');
+        // 2. 设置当鼠标在 chanpin 里时，mask 和 big 显示出来
+        chanpin.addEventListener('mouseover', function () {
+            mask.style.display = 'block';
+            big.style.display = 'block';
+        })
+        chanpin.addEventListener('mouseout', function () {
+            mask.style.display = 'none';
+            big.style.display = 'none';
+        })
+
+        // 重点 ↓
+        // 3. 获取鼠标在盒子中的坐标，并让 mask 跟随鼠标移动
+        chanpin.addEventListener('mousemove', function (e) {
+            // 鼠标在盒子中的坐标
+            var x = e.pageX - this.offsetLeft;
+            var y = e.pageY - this.offsetTop;
+
+            // 3.1 限制 mask 遮罩层 的移动距离
+            // 取得 mask 的坐标
+            var maskX = x - mask.offsetWidth / 2;
+            var maskY = y - mask.offsetHeight / 2;
+            // 限制 mask 遮罩层 的移动距离
+            // mask在X、Y轴上的最大移动距离
+            var maskMaxX = chanpin.offsetWidth - mask.offsetWidth;
+            var maskMaxY = chanpin.offsetHeight - mask.offsetHeight;
+            // X 轴
+            // (1) 如果小于 0 就将mask坐标设置为 0 
+            if (maskX <= 0) {
+                maskX = 0;
+                // (2) 如果大于 最大的移动距离 就将mask坐标设置为 最大移动距离 
+            } else if (maskX >= maskMaxX) {
+                maskX = maskMaxX;
+            }
+            // Y 轴同理
+            if (maskY <= 0) {
+                maskY = 0;
+            } else if (maskY >= maskMaxY) {
+                maskY = maskMaxY;
+            }
+            mask.style.left = maskX + 'px';
+            mask.style.top = maskY + 'px';
+
+            // 4. 移动 mask 遮罩层时，大图片也跟随着移动
+            // 大图片移动距离 = 遮罩层mask的移动距离 * 大图片最大移动距离 / 遮罩层mask的最大移动距离
+            // 大图片：
+            var bigImg = document.querySelector('.img-b');
+            // 大图片最大移动距离：
+            var bigMaxX = bigImg.offsetWidth - big.offsetWidth;
+            var bigMaxY = bigImg.offsetHeight - big.offsetHeight;
+            // 大图片移动距离：
+            var bigX = maskX * bigMaxX / maskMaxX;
+            var bigY = maskY * bigMaxY / maskMaxY;
+            // 大图片移动
+            bigImg.style.left = -bigX + 'px';
+            bigImg.style.top = -bigY + 'px';
+        })
+    </script>
+</body>
+
+</html>

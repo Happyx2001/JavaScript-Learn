@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>let</title>
+    <script>
+        // let声明变量
+        let a;
+        let b, c, d;
+        let e = 100;
+        let f = 123, g = 'Hello World', h = [];
+
+        // 1. let声明的变量不能重复声明，会报错
+        // let yep = 123;
+        // let yep = 456;
+        // 结果报错
+
+        // 2. let声明的变量有块级作用域  全局、函数、eval
+        // 只在代码块内有效
+        // eg: if while else for
+        {
+            let uname = '张三';
+            console.log(uname);
+        }
+        console.log(uname);   // 显示 uname 未定义
+
+        // 3. 不存在变量提升(预解析)
+        console.log(age);
+        let age = 18;
+        // 报错
+
+        // 4. 不影响作用域链
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

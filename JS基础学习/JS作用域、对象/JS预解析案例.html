@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>预解析案例</title>
+    <script>
+        // 1. 
+        var num1 = 10;
+        fun1();
+        function fun1() {
+            console.log(num1);
+            var num1 = 20;
+        }
+        // 相当于执行了👇    (变量提升, 函数提升)
+        // var num1;
+        // function fun1() {
+        //     var num1;
+        //     console.log(num1);
+        //     num1 = 20;
+        // }
+        // num1 = 10;
+        // fun1();
+        // 因此: 会输出打印 undefined
+
+        console.log('');
+        // 2.
+        var num2 = 10;
+        function fun2() {
+            console.log(num2);
+            var num2 = 20;
+            console.log(num2);
+        }
+        fun2();
+        // 相当于执行了👇    (变量提升, 函数提升)
+        // var num2;
+        // function fun2() {
+        //     var num2;
+        //     console.log(num2);
+        //     num2 = 20;
+        //     console.log(num2);
+        // }
+        // num2 = 10;
+        // fun2();
+        // 因此: 会打印输出 undefined,  20
+
+        console.log('');
+        // 3.
+        var num3a = 18;
+        fun3();
+        function fun3() {
+            var num3b = 9;
+            console.log(num3a);
+            console.log(num3b);
+            var num3a = '123';
+        }
+        // 相当于执行了👇    (变量提升, 函数提升)
+        // var num3a;
+        // function fun3() {
+        //     var num3b;
+        //     var num3a;
+        //     num3b = 9;
+        //     console.log(num3a);
+        //     console.log(num3b);
+        //     num3a = '123';
+        // }
+        // num3a = 18;
+        // fun3();
+        // 因此: 会打印输出 undefined,  9
+
+        console.log('');
+        // 4. 
+        fun4();
+        console.log(c);
+        console.log(b);
+        console.log(a);
+        function fun4() {
+            var a = b = c = 9;
+            // 这种声明方式等于   var a = 9; b = 9; c = 9;
+            // b 和 c 是直接赋值, 没有声明, 因此当作全局变量
+            // 若要全部声明(集体声明)应当， var a = 9, b = 9, c = 9;
+            console.log(a);
+            console.log(b);
+            console.log(c);
+        }
+        // 相当于执行了👇    (变量提升, 函数提升)
+        // function fun4() {
+        //     var a;    
+        //     a = b = c = 9;
+        //     console.log(a);
+        //     console.log(b);
+        //     console.log(c);
+        // }
+        // fun4();
+        // console.log(c);
+        // console.log(b);
+        // console.log(a);
+        // 因此: 会打印输出  9, 9, 9, 9, 9, 报错
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

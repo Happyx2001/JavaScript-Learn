@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组</title>
+    <script>
+        // var num = 10;
+        // 普通变量： 一次只能存储一个值
+        // var arr = [1, 2, 3, 4, 5];
+        // 数组：一次可以存储多个值
+
+
+        // 1. 数组(Array)：一组数据的集合，存储再单个变量下的优雅方式
+        // 2.  利用new创建数组
+        var arr = new Array();   // 这是一个空数组
+        // 3. 直接利用数组字面量创建数组[]
+        var arr2 = [];  // 这也是个空数组
+        var arr3 = [1, 2, 3, 'hhhhh', true];
+        console.log(arr3);
+        // 数组里面可以放置任意数量与属性的值，但必须要逗号隔开
+
+
+        // 4. 获取数组
+        // 数组的索引: 数组名[索引]
+        // ps:排序为0，1，2，3，...
+        console.log(arr3[3]);  //arr3[3] 表示获取数组arr3 的第4个元素
+
+
+        // 5. 遍历数组   将数组中的每个元素从头到尾都访问一遍
+        for (var i = 0; i <= arr3.length - 1; i++) {
+            console.log(arr3[i]);
+        }
+
+
+        // 6. 数组长度   数组名.length     是动态检测
+        // 数组长度为元素的个数
+        console.log(arr3.length);
+
+
+        // 7. 增加数组元素
+        // 7.1 修改length长度
+        var arr71 = ['red', 'blue', 'yellow'];
+        console.log(arr71.length);
+        arr71.length = 5;   // 修改数组长度为5，里面应该得有5个元素
+        console.log(arr71);   //会有两个空位： empty
+        console.log(arr71[3]);  // undefined
+        console.log(arr71[4]);  // undefined
+
+        // 7.2 修改索引号，追加数组元素
+        var arr72 = ['red', 'blue', 'yellow'];
+        console.log(arr72);
+        arr72[3] = 'green';  // 追加'green'
+        console.log(arr72);
+        arr72[4] = 'black';  // 追加'black'
+        console.log(arr72);
+        arr72 = 'gray';
+        console.log(arr72);
+        // ps: 不能直接给数组赋值，否则数组元素会全部消失
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

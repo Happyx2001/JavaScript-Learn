@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symbol的介绍与创建</title>
+    <script>
+        // ES6 引入了一种新的原始数据类型 Symbol, 表示独一无二的值
+        // 它是JS的第七种数据类型, 类似于字符串
+
+        // Symbol 特点:
+        // 1. Symbol 的值是唯一的, 用于解决命名冲突的问题
+        // 2. Symbol 的值不能与其他数据进行运算
+        // 3. Symbol 定义的对象属性不能使用 for...in 循环遍历,
+        //    但是可以使用 Reflect.ownKeys 来获取对象的所有键名
+
+        // 创建 Symbol
+        // 1. Symbol(key)
+        let s1 = Symbol('张三');
+        let s2 = Symbol('张三');
+        console.log(s1, typeof s1);
+        console.log(s2, typeof s2);
+        console.log(s1 === s2);
+        // 结果为 false , 在这里'张三'只是 s1, s2 的一个标志, 但其实 s1 不等于 s2
+
+        // 2. Symbol.for(key)
+        let s3 = Symbol.for('李四');
+        let s4 = Symbol.for('李四');
+        let s5 = Symbol.for('张三');
+        let s6 = Symbol.for('张三');
+        console.log(s3, typeof s3);
+        console.log(s4, typeof s4);
+        console.log(s3 === s4);  // 结果为 true
+        console.log(s5 === s6);  // 结果为 true
+        // Symbol.for(key) 会先根据给定的 key 值,检查是否已经存在该key值所描述的Symbol
+        // 如果存在则返回这个Symbol, 如果不存在则新建一个Symbol
+        // 故: 这里的 s4 = Symbol.for('李四') 实际上 key 指向的是 s3
+
+        // 3. ES10 新增 Symbol 方法扩展
+        // Symbol.prototype.description 获取 Symbol 的标签名
+        let s = Symbol('国士无双！');
+        console.log(s.description);
+
+
+        // Symbol 不能与其他数据进行运算
+        // let q1 = s1 + 100;
+        // let q2 = s1 > 100;
+        // let q3 = s1 + '100';
+        // 全都会报错
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生成器函数声明与调用</title>
+    <script>
+        // 生成器函数是 ES6 提供的一种"异步编程"解决方案，语法与传统函数完全不同
+        // 异步编程  纯回调函数   node  fs  ajax  mongodb
+
+        // 声明方式   function 后面加 *
+        function* gen() {
+            console.log(111);
+            yield '张三';
+            // yield 是函数分隔符, 3个 yield 可以将函数分为 4块, 每次 next()都会在执行完一个 yield 后停止
+            // yield 只能在生成器函数中使用
+            console.log(222);
+            yield '李四';
+            console.log(333);
+            yield '王五';
+            console.log(444);
+        }
+
+        // 执行获取迭代器对象
+        let iterator = gen();
+
+        // iterator.next();   // 输出 111
+        // iterator.next();   // 输出 222
+        // iterator.next();   // 输出 333
+        // iterator.next();   // 输出 444
+        // console.log('');
+
+        console.log(iterator.next());
+        console.log(iterator.next());
+        console.log(iterator.next());
+        console.log(iterator.next());
+        console.log('');
+
+        // for...of 遍历
+        for (let v of gen()) {
+            console.log(v);
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

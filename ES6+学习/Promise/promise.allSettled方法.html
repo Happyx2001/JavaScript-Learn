@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promise.allSettled方法</title>
+    <script>
+        // promise.allSettled 方法, ES11 新增的方法
+        // 该方法接受一个由promise对象组成的数组,
+        // 返回的结果也是一个 promise 对象
+        // 且返回的结果永远是 成功的promise
+
+        // 声明两个 promise 对象
+        const p1 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(' p1 成功了')
+            }, 1000)
+        })
+        const p2 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(' p2 成功了')
+            }, 1000)
+        })
+        const p3 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                reject(' p3 失败了')
+            }, 1000)
+        })
+        // 调用 promise.allSettled 方法
+        const result = Promise.allSettled([p1, p2, p3])
+        console.log(result);
+        // 返回的 PromiseState 是成功的(fulfilled)
+        // 返回的 PromiseResult (该promise数据) 是一个数组, 
+        // 数组里面包括了传入allSettled方法的Promise数组的每个Promise状态和Promise返回的值
+
+
+
+        // 2. all 方法 与 allSettled 方法相似,
+        // 但是要是传入的数组中有一个 promise 失败了, 那么 all 方法返回的 promise 是失败的
+        // 只有全部成功才能返回 成功的结果 (成功的promise)
+        const result2 = Promise.all([p1, p2, p3])
+        console.log(result2);
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

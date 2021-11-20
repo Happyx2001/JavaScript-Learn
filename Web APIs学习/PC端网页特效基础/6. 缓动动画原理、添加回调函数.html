@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>缓动动画原理</title>
+    <script>
+        // 缓动动画就是让元素运动速度有所变化, 最常见的是让速度慢慢降下来
+        // 原理:
+        // (1): 让盒子每次移动的距离慢慢变小, 速度就会慢慢降下去
+        // (2): 核心算法: (目标值 - 现在的位置) / 10 作为每次移动的距离步长step
+        // (3): 设置停止条件
+
+        // 缓动动画添加回调函数：
+        // 调用函数的时候，实参也可以是函数
+        // 这样的 函数实参 传递给形参后就是回调函数
+        // 回调函数在函数中最后执行
+
+    </script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        div {
+            position: relative;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="btn1">移动到500</button>
+    <button class="btn2">移动到800</button>
+    <button class="fuyuan">复原</button>
+    <div>缓动动画</div>
+    <script>
+        // 获取元素
+        var btn1 = document.querySelector('.btn1');
+        var btn2 = document.querySelector('.btn2');
+        var fuyuan = document.querySelector('.fuyuan');
+        var div = document.querySelector('div');
+        // 缓动动画函数
+        function animate(obj, target, speed, callback) {
+            // 清除计时器 timer
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function () {
+                // 设置步长step = (目标位置 - 对象的当前位置) / 10
+                var step = (target - obj.offsetLeft) / 10;
+                // 为了消除小数，所以用Math取整数，大于0向上取整，小于0向下取整
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                obj.style.left = obj.offsetLeft + step + 'px';
+                // 到达目标位置后，清除计时器 timer
+                if (obj.offsetLeft == target) {
+                    clearInterval(obj.timer);
+                    // 回调函数写到计时器结束里面
+                    if (callback) {   // 判断有没有回调函数
+                        callback();   // 调用函数
+                    }
+                    // 或者：callback && callback();
+                };
+            }, speed)
+        };
+        // 添加点击事件
+        btn1.addEventListener('click', function () {
+            // 点击事件中，调用函数
+            animate(div, 500, 30, function () {
+                alert('我已经到了500位置');
+            });
+        });
+        btn2.addEventListener('click', function () {
+            animate(div, 800, 30, function () {
+                alert('我已经到了800位置');
+            });
+        });
+        fuyuan.addEventListener('click', function () {
+            animate(div, 0, 30, function () {
+                alert('复原完毕');
+            });
+        })
+    </script>
+</body>
+
+</html>

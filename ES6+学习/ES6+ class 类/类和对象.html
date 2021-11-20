@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类的对象</title>
+    <script>
+        // 1. 创建类 class 
+        class Star {
+            // 类的共有属性放到 constructor 里面  (构造方法 constructor)
+            constructor(hename, num) {
+                this.uname = hename;
+                this.age = num;
+            }
+            // 类创建函数(方法)
+            play(game) {
+                console.log(this.uname + '玩' + game);
+            }
+        }
+
+        // 2. 利用类创建对象 new
+        let zhangsan = new Star('张三', 18);
+        let lisi = new Star('李四', 20);
+        console.log(zhangsan);
+        console.log(lisi);
+        // (1) 通过class创建类，类名建议首字母大写
+        // (2) 类里面的 constructor 函数，可以接受传递过来的参数，同时返回实例对象
+        // (3) constructor 函数，只要 new 生成实例就会自动调用，不写 类也会自动生成这个函数
+        // (4) 生成实例 new 不能省略
+        // (5) 注意语法规划
+
+        // 3. 类中的函数
+        zhangsan.play('LOL');
+        lisi.play('王者荣耀');
+        // (1) 类里面写函数不用写function
+        // (2) 多个函数之间不用 , 隔开
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

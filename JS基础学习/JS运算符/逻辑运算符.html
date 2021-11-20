@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>逻辑运算符</title>
+    <script>
+        // (重点)运算顺序：先 && ，后 ||
+        // 1. 逻辑 与 && ：两次都为true时，返回true
+        //                有一侧为false时，都为false 
+        console.log(5 > 2 && 3 > 1); // 返回 true
+        console.log(5 < 2 && 3 > 1); // 返回 false
+        console.log('');
+        // 2. 逻辑 或 || ：两次有一个为true时，返回true
+        console.log(5 < 2 || 3 > 1); // 返回 true
+        console.log('');
+        // 3. 逻辑 非 ！   (取反符，非true即false)
+        console.log(!true); // 返回false
+        console.log('');
+
+        // 练习：
+        var num = 7;
+        var str = '鹅鹅鹅，曲项向天歌'
+        console.log(num > 5 && str.length > 5); // 返回 true
+        console.log(num < 5 && str.length > 5); // 返回 false
+        console.log(!(num > 10)); // 返回 true
+        console.log(!(num < 5 || str.length > 5)); // 返回 false
+        console.log('');
+
+        // 逻辑运算的短路运算  ！！！ 会影响程序的运行结果
+        // 中断逻辑与 &&
+        // 表达式 1 && 表达式 2 
+        // 如果表达式 1 为真，则返回表达式 2
+        // 如果表达式 1 为假，则返回表达式1
+        console.log(123 && 456);  // 返回456
+        console.log(0 && 456);  // 返回0
+        console.log(0 && 1 + 2 && 4 * 6);  //返回0
+        console.log('' && 1 + 2 && 4 * 6);  //返回 ''
+        // '' 和 0 算作为假
+        console.log('');
+        // 中断逻辑或 ||
+        // 表达式 1 || 表达式 2 
+        // 如果表达式 1 为真，则返回表达式 1
+        // 如果表达式 1 为假，则返回表达式 2
+        console.log(123 || 456);  // 返回123
+        console.log(0 || 456);  // 返回456
+        console.log(0 || 456 || 123); //返回456
+        // ps：未返回的值不会运行
+        var ps = 10;
+        console.log(123 || ps++); // 返回123
+        console.log(ps);
+        // 因为上一个式子只返回了123，所以ps++未运行，因此返回ps值为10
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
